@@ -8,6 +8,7 @@ const api_url = 'http://guru.madex.pro/';
 
 export default new Vuex.Store({
   state: {
+    product: null,
     categories: [],
     groups: [],
     products: [],
@@ -89,6 +90,12 @@ export default new Vuex.Store({
       for(let key in komplect) {
         state.cart.push(komplect[key])
       }
+    },
+    show(state, item) {
+      state.product = item
+    },
+    hide(state) {
+      state.product = null
     }
   },
   actions: {
@@ -219,6 +226,16 @@ export default new Vuex.Store({
     },
     cartTotal({cart}) {
       return cart.length
+    },
+    product({product}) {
+      return product
+    },
+    productById({products}) {
+      return function(id) {
+        for(let i = 0; i < products.length; i++) {
+          if(products[i].id === id) return products[i]
+        }
+      }
     }
   }
 })

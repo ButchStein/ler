@@ -41,6 +41,9 @@
         </div>
         <support-phone/>
     </div>
+    <modal v-model="popup" @close="$store.commit('hide')">
+        <product-card :product="$store.getters.product"/>
+    </modal>
 </div>  
 </template>
 
@@ -48,9 +51,11 @@
 import Step from '../template/Step'
 import Komplect from '../template/Komplect'
 import ProductGroup from '../template/product/ProductGroup'
+import ProductCard from '../template/product/ProductCard'
 import CartSummary from '../template/CartSummary'
 import ConsultForm from '../template/ConsultForm'
 import SupportPhone from '../template/SupportPhone'
+import Modal from '../template/Modal'
 
 export default {
     components: {
@@ -59,7 +64,9 @@ export default {
         ProductGroup,
         CartSummary,
         ConsultForm,
-        SupportPhone
+        SupportPhone,
+        Modal,
+        ProductCard
     },
     computed: {
         groups() {
@@ -67,6 +74,9 @@ export default {
         },
         products() {
             return this.$store.getters.products
+        },
+        popup() {
+            return this.$store.getters.product !== null
         }
     },
     methods: {

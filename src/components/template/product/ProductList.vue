@@ -8,7 +8,7 @@
             <div class="product-list__item-info">
                 <div class="product-list__item-title">{{item.name}}</div>
                 <div class="product-list__item-desc">{{item.short_desc}}</div>
-                <a href="#">Подробнее</a>
+                <a href="#" @click.prevent.self="$store.commit('show', item)">Подробнее</a>
             </div>
             <div class="product-list__item-price">
                 <div class="price price-old">{{ item.price }}</div>
