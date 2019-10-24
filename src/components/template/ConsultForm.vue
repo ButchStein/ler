@@ -49,11 +49,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.form-inline {
-
-}
-
-
-</style>

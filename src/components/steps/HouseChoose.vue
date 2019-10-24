@@ -61,6 +61,7 @@ export default {
 <style lang="sass">
 .cards
     display: flex
+    flex-wrap: wrap
 .cards-center
     justify-content: center
 .cards-left
