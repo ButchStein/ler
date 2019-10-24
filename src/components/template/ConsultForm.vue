@@ -1,9 +1,17 @@
 <template>
 <div>
     <form class="form-inline" @submit.prevent="submit()" v-if="!sent">
-        <input v-model="params.name" name="name" type="text" class="form-input" placeholder="Имя" required/>
-        <input v-model="params.phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
-        <button type="submit" class="form-button">Отправить</button>
+        <div class="row">
+            <div class="col-lg-4  col-md-6">
+                <input v-model="params.name" name="name" type="text" class="form-input" placeholder="Имя" required/>
+            </div>
+            <div class="col-lg-4  col-md-6">
+                <input v-model="params.phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
+            </div>
+            <div class="col-lg-4">
+                <button type="submit" class="form-button">Отправить</button>
+            </div>
+        </div>
     </form>
 
     <p v-if="sent">Ваша заявка отправлена. Мы скоро свяжемся с вами!</p>
@@ -41,3 +49,11 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+.form-inline {
+
+}
+
+
+</style>

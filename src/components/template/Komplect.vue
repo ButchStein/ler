@@ -42,50 +42,102 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="scss">
+.komplect {
+    flex-grow: 1;
 
-.komplect
-    flex-grow: 1
+    & + & {
+        margin-left: 8px;
+    }
 
-    & + .komplect 
-        margin-left: 8px
+    & input[type='radio']:checked + label {
+        border: 3px solid #24BBF6;
+    }
 
-.komplect input[type='radio']:checked + label
-    border: 3px solid #24BBF6;
+    &__label {
+        cursor: pointer;
+        display: block;
+        background: #fff;
+        border: 1px solid #D2D3D3;
+        border-radius: 2px;
+        padding: 20px;
+    }
 
-.komplect__label
-    cursor: pointer
-    display: block
-    background: #fff
-    border: 1px solid #D2D3D3;
-    border-radius: 2px;
-    padding: 20px
-
-    &:hover 
+    &__label:hover {
         box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.12);
-        border-color: #fff
+        border-color: #fff;
+    }
 
-    
+    &__label label {
+        display: block;
+    }
 
-    label
-        display: block
+    &__title {
+        font-size: 20px;
+        margin-bottom: 16px;
+        color: #000;
+    }
 
-.komplect__title
-    font-size: 20px
-    margin-bottom: 16px
-    color: #000
-    
-.komplect__desc
-    font-size: 13px;
-    line-height: 18px;
-    color: #666;
-    margin-bottom: 46px;
+    &__desc {
+        font-size: 13px;
+        line-height: 18px;
+        color: #666;
+        margin-bottom: 46px;
+    }
 
-.komplect__price
-    color: #666;
+    &__price {
+        color: #666;
+    }
 
-.komplect__footer
-    display: flex
-    justify-content: space-between
-    aling-item: center
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (max-width: 991px) {
+    .komplect {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+
+        &__label {
+            flex: 1;
+            padding: 15px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .komplect {
+        min-width: 200px;
+
+        &__label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__title {
+            margin-bottom: 0;
+            padding-right: 10px;
+            flex-grow: 1;
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        &__desc {
+            display: none;
+        }
+
+        &__footer {
+            align-items: flex-start;
+        }
+
+        &__stars {
+            display: none;
+        }
+    }
+}
 </style>

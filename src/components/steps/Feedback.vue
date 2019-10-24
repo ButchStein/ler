@@ -3,12 +3,16 @@
         <step title="Оставьте свои контактные данные" alignleft="true">
                 <template v-slot:desc>
                 <div class="row">
-                    <p class="col-xl-7">Неприятный запах воды может возникнуть из-за многих 
+                    <p class="col-xl-7">Неприятный запах воды может возникнуть из-за многих
                     проблем системы водоснабжения, мы перезвоним вам для уточнения деталей.</p>
                 </div>
                 </template>
                 <template v-slot:body>
-                    <consult-form/>
+                    <div class="row">
+                        <div class="col-xl-7  col-lg-8">
+                            <consult-form/>
+                        </div>
+                    </div>
 
                     <div style="margin-top: 20px;">
                         <start-again-btn/>

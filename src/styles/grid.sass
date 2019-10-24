@@ -17,6 +17,9 @@ $grid-breakpoints: (xs: 0, sm: $screen-sm, md: $screen-md, lg: $screen-lg, xl: $
 
 $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px) !default
 
+$grid-gutter-width-base: 15px
+$grid-gutter-widths: (xs: $grid-gutter-width-base + 15px, sm: $grid-gutter-width-base, md: $grid-gutter-width-base, lg: $grid-gutter-width-base, xl: $grid-gutter-width-base)
+
 // Breakpoint viewport sizes and media queries.
 //
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:
@@ -129,18 +132,53 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px) !default
     +media-breakpoint-down($name, $breakpoints)
       @content
 
+=make-col-offset($size, $columns: $grid-columns)
+  $num: $size / $columns
+  margin-left: if($num == 0, 0, percentage($num))
+
+
+=make-gutters($gutters: $grid-gutter-widths)
+  @each $breakpoint in map-keys($gutters)
+    +media-breakpoint-up($breakpoint)
+      $gutter: map-get($gutters, $breakpoint)
+
+      padding-right: $gutter / 2
+      padding-left: $gutter / 2
+
+=make-col-offset($size, $columns: $grid-columns)
+  margin-left: percentage($size / $columns)
+
+=make-col-push($size, $columns: $grid-columns)
+  left: if($size > 0, percentage($size / $columns), auto)
+
+=make-col-pull($size, $columns: $grid-columns)
+  right: if($size > 0, percentage($size / $columns), auto)
+
+=make-col-modifier($type, $size, $columns)
+  // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
+  @if $type == push
+    +make-col-push($size, $columns)
+  @else if $type == pull
+    +make-col-pull($size, $columns)
+  @else if $type == offset
+    +make-col-offset($size, $columns)
+
+
 // Framework grid generation
 //
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-=make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints)
+=make-grid-columns($columns: $grid-columns, $gutters: $grid-gutter-widths, $breakpoints: $grid-breakpoints)
   // Common properties for all breakpoints
   %grid-column
     position: relative
     width: 100%
-    padding-right: $gutter / 2
-    padding-left: $gutter / 2
+    min-height: 1px
+
+    // Prevent columns from collapsing when empty
+
+    +make-gutters($gutters)
 
   @each $breakpoint in map-keys($breakpoints)
     $infix: breakpoint-infix($breakpoint, $breakpoints)
@@ -150,8 +188,7 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px) !default
       .col#{$infix}-#{$i}
         @extend %grid-column
 
-    .col#{$infix},
-    .col#{$infix}-auto
+    .col#{$infix}
       @extend %grid-column
 
     +media-breakpoint-up($breakpoint, $breakpoints)
@@ -162,36 +199,65 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px) !default
         max-width: 100%
 
       .col#{$infix}-auto
-        +make-col-auto
+        flex: 0 0 auto
+        width: auto
 
       @for $i from 1 through $columns
         .col#{$infix}-#{$i}
           +make-col($i, $columns)
 
+      @each $modifier in pull, push
+        @for $i from 0 through $columns
+          .#{$modifier}#{$infix}-#{$i}
+            +make-col-modifier($modifier, $i, $columns)
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through $columns - 1
+        @if not ($infix == "" and $i == 0)
+          // Avoid emitting useless .offset-xs-0
+          .offset#{$infix}-#{$i}
+            +make-col-modifier(offset, $i, $columns)
+
+
 /// Grid system
 //
 // Generate semantic grid columns with these mixins.
 
-=make-container($padding-x: $container-padding-x)
-  width: 100%
-  padding-right: $padding-x
-  padding-left: $padding-x
-  margin-right: auto
+=make-container($gutters: $grid-gutter-widths)
+  position: relative
   margin-left: auto
+  margin-right: auto
 
-=make-container-left($padding-x: $container-padding-x)
+  @each $breakpoint in map-keys($gutters)
+    +media-breakpoint-up($breakpoint)
+      $gutter: map-get($gutters, $breakpoint)
+
+      padding-right: $gutter / 2
+      padding-left: $gutter / 2
+
+=make-container-left($gutters: $grid-gutter-widths)
   width: 100%
-  padding-right: $padding-x
-  padding-left: $padding-x
   margin-right: 0
   margin-left: auto
 
-=make-container-right($padding-x: $container-padding-x)
+  @each $breakpoint in map-keys($gutters)
+    +media-breakpoint-up($breakpoint)
+      $gutter: map-get($gutters, $breakpoint)
+
+      padding-right: $gutter / 2
+      padding-left: $gutter / 2
+
+=make-container-right($gutters: $grid-gutter-widths)
   width: 100%
-  padding-right: $padding-x
-  padding-left: $padding-x
   margin-right: auto
   margin-left: 0
+
+  @each $breakpoint in map-keys($gutters)
+    +media-breakpoint-up($breakpoint)
+      $gutter: map-get($gutters, $breakpoint)
+
+      padding-right: $gutter / 2
+      padding-left: $gutter / 2
 
 // For each breakpoint, define the maximum width of the container in a media query
 =make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints)
@@ -205,11 +271,15 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px) !default
     +media-breakpoint-up($breakpoint, $breakpoints)
       max-width: $container-max-width / 2
 
-=make-row($gutter: $grid-gutter-width)
+=make-row($gutters: $grid-gutter-widths)
   display: flex
   flex-wrap: wrap
-  margin-right: -$gutter / 2
-  margin-left: -$gutter / 2
+  @each $breakpoint in map-keys($gutters)
+    +media-breakpoint-up($breakpoint)
+      $gutter: map-get($gutters, $breakpoint)
+
+      margin-right: -($gutter / 2)
+      margin-left: -($gutter / 2)
 
 =make-col-ready($gutter: $grid-gutter-width)
   position: relative
@@ -239,16 +309,16 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px) !default
 +make-grid-columns()
 
 .container
-    +make-container()
-    +make-container-max-widths()
+  +make-container()
+  +make-container-max-widths()
 
 .container-left
-    +make-container-left()
-    +make-container-half-widths()
+  +make-container-left()
+  +make-container-half-widths()
 
 .container-right
-    +make-container-right()
-    +make-container-half-widths()
+  +make-container-right()
+  +make-container-half-widths()
 
 .row
-    +make-row()
+  +make-row()

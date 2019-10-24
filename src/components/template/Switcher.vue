@@ -8,7 +8,7 @@
             <button class="switcher__button" :class="{ active: isActive }" @click="setActive">Да</button>
             <button class="switcher__button" :class="{ active: !isActive }" @click="setInactive">Нет</button>
         </div>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -34,42 +34,77 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.switcher
-    display: flex
-    align-items: center
-    padding: 32px 0
-    & + .switcher
-        border-top: 1px solid rgba(210,211,211,.5)
+<style lang="scss">
+.switcher {
+    display: flex;
+    align-items: center;
+    padding: 32px 0;
 
-.switcher__text
-    flex-grow: 1
-    font-size: 15px;
-    line-height: 15px;
-    letter-spacing: 0.01em;
-    color: #000000;
+    & + & {
+        border-top: 1px solid rgba(210, 211, 211, 0.5);
+    }
 
-    &-title
+    &__text {
+        flex-grow: 1;
+        font-size: 15px;
+        line-height: 15px;
+        letter-spacing: 0.01em;
+        color: #000000;
+    }
+
+    &__text-title {
         text-transform: uppercase;
-        margin-bottom: 16px
-        font-weight: bold
-    
-    &-desc 
-        line-height: 20px
-        
-.switcher__button
-    border: 1px solid #24BBF6;
-    box-sizing: border-box;
-    border-radius: 100px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #24BBF6;
-    background: #fff;
-    padding: 17px 35px
-    cursor: pointer
-    & + .switcher__button
-        margin-left: 6px
+        margin-bottom: 16px;
+        font-weight: bold;
+    }
 
-    &.active
+    &__text-desc {
+        line-height: 20px;
+    }
+
+    &__button {
+        border: 1px solid #24BBF6;
+        box-sizing: border-box;
+        border-radius: 100px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #24BBF6;
+        background: #fff;
+        padding: 17px 35px;
+        cursor: pointer;
+    }
+
+    &__button + &__button {
+        margin-left: 6px;
+    }
+
+    &__button.active {
         background: rgba(36, 187, 246, 0.15);
+    }
+
+    &__buttons {
+        flex-shrink: 0
+    }
+}
+
+@media (max-width: 991px) {
+    .switcher {
+
+        &:first-child {
+            padding-top: 0;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .switcher {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__text {
+            margin-bottom: 16px;
+        }
+    }
+}
 </style>

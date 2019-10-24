@@ -2,16 +2,25 @@
 <div class="container">
     <step title="Подбор индивидуального комплексного решения для вас">
         <template v-slot:body>
-            <div class="cards cards-center">
-                <card @click="choosePath('flat')" title="В квартиру" desc="Решения для многоквартирных домов" actiontext="Начать">
-                    <img src="../../assets/flat.png"/>
-                </card>
-                <card @click="choosePath('house')" title="В загородный дом" desc="Решения для многоквартирных домов" actiontext="Начать">
-                    <img src="../../assets/house.png"/>
-                </card>
-                <card @click="choosePath('dacha')" title="На дачу" desc="Решения для многоквартирных домов" actiontext="Начать">
-                    <img src="../../assets/dacha.png"/>
-                </card>
+            <div class="row">
+                <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
+                    <card @click="choosePath('flat')" title="В квартиру" desc="Решения для многоквартирных домов" actiontext="Начать">
+                        <img src="../../assets/flat.png"/>
+                    </card>
+                </div>
+
+
+                <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
+                    <card @click="choosePath('house')" title="В загородный дом" desc="Решения для многоквартирных домов" actiontext="Начать">
+                        <img src="../../assets/house.png"/>
+                    </card>
+                </div>
+
+                <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
+                    <card @click="choosePath('dacha')" title="На дачу" desc="Решения для многоквартирных домов" actiontext="Начать">
+                        <img src="../../assets/dacha.png"/>
+                    </card>
+                </div>
             </div>
         </template>
     </step>

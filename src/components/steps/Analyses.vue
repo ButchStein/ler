@@ -1,6 +1,6 @@
 <template>
     <div class="analyses">
-        <div class="container-left analyses__step">
+        <div class="container-left  analyses__step">
             <step title="Введите данные анализа воды" showback="true" alignleft="true">
                 <template v-slot:body>
                     <input-field title="Жёсткость" metric="мг-экв/л" v-model="analyses.hardness"/>
@@ -9,7 +9,7 @@
                         <div>Дополнительные показатели</div>
                         <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.5" d="M1.20711 0C0.761654 0 0.53857 0.53857 0.853552 0.853552L7.64645 7.64645C7.84171 7.84171 8.15829 7.84171 8.35355 7.64645L15.1464 0.853553C15.4614 0.538571 15.2383 0 14.7929 0H1.20711Z" fill="#656565"/>
-                        </svg>    
+                        </svg>
                     </button>
                     <div class="collapse__body" v-if="showAll">
                         <input-field title="Нитраты" metric="мг/л" v-model="analyses.nitrati"/>
@@ -68,49 +68,78 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.analyses
+<style lang="scss">
+@import "../../styles/grid.sass";
+
+.analyses {
     display: flex;
     align-items: stretch;
     min-height: 100vh;
 
-.analyses__step
-    padding-right: 100px
 
-.analyses__example
-    background: #EFF1F1;
-    width: 50%
-    display: flex
-    justify-content: center
-    align-items: top
-    padding-top: 164px
-    text-align: center
+    &__left {
+        padding-left: 15px;
+        max-width: 360px;
+    }
 
-    img
-        max-width: 100%;
-        height: auto
+    &__step {
+        padding-right: 100px;
+    }
 
-.collapse__title 
-    padding: 20px 0
-    font-size: 15px
-    color: #000
-    text-transform: uppercase
-    font-weight: bold
-    background: transparent
-    border: 0
-    border-top: 1px solid rgba(210,211,211,.5)
-    border-bottom: 1px solid rgba(210,211,211,.5)
-    display: block
-    width: 100%
-    text-align: left
-    display: flex
-    align-items: center
-    line-height: 1
-    cursor: pointer
+    &__example {
+        background: #EFF1F1;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: top;
+        padding-top: 164px;
+        text-align: center;
 
-    svg
-        margin-left: auto
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
 
-    &.active
-        border-bottom: 0
+
+.collapse__title {
+  padding: 20px 0;
+  font-size: 15px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(210, 211, 211, 0.5);
+  border-bottom: 1px solid rgba(210, 211, 211, 0.5);
+  display: block;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  cursor: pointer;
+}
+.collapse__title svg {
+  margin-left: auto;
+}
+.collapse__title.active {
+  border-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .analyses {
+        &__example {
+            display: none;
+        }
+
+        &__step {
+            @include make-container();
+            @include make-container-max-widths();
+            max-width: 100%;
+            padding: 0 24px;
+        }
+    }
+}
 </style>

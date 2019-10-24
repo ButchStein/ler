@@ -1,26 +1,28 @@
-.form-input 
-    background: #EFF1F1;
-    padding: 25px 10px 20px
-    font-size: 15px;
-    line-height: 1
-    border-radius: 2px;
-    border: 0;
-    width: 210px;
-    &.sm
-        width: 105px;
+.form-input
+    display: block
+    width: 100%
+    background: #EFF1F1
+    padding: 0 10px
+    height: 60px
+    font-size: 15px
+    border-radius: 2px
+    border: 0
+
 
 .form-button
-    padding: 25px 10px 20px
+    display: block
+    width: 100%
+    padding: 0 20px
+    height: 60px
+    line-height: 58px
     font-weight: 600
-    font-size: 15px;
-    line-height: 1
-    border-radius: 2px;
-    border: 1px solid #24BBF6;
+    font-size: 15px
+    border-radius: 2px
+    border: 1px solid #24BBF6
     background-color: #24BBF6
     color: #fff
     text-transform: uppercase
-    text-align: center;
-    min-width: 210px;
+    text-align: center
 
 .form-inline
     .form-input
@@ -31,7 +33,11 @@
     line-height: 18px
 
 button[disabled]
-    opacity: .5 
+    opacity: .5
 
 button:enabled
     cursor: pointer
+
+@media (max-width: 991px)
+    .form-input
+        margin-bottom: 16px
