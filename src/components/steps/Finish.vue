@@ -9,9 +9,12 @@
                     </template>
                     <template v-slot:body>
                         <div class="cards cards-komlects">
-                            <komplect title="Бюджетный" desc="Для бичей" rating="3.5" price="3500"/>
-                            <komplect title="Бюджетный" desc="Для бичей" rating="4" price="6000"/>
-                            <komplect title="Бюджетный" desc="Для бичей" rating="5" price="9000"/>
+                            <komplect :key="komplect.id" 
+                            v-for="komplect in $store.getters.packages" 
+                            :title="komplect.name" 
+                            :desc="komplect.description" 
+                            :rating="komplect.rating" 
+                            :items="calcKomplect(komplect.products)"/>
                         </div>
 
                         
@@ -71,6 +74,15 @@ export default {
             return array.filter( function(item) {
                 return item.group_id == id
             } )
+        },
+        calcKomplect(items) {
+            let komplectItems = []
+            for(let key in this.products) {
+                if(items.indexOf(this.products[key].id) >= 0) {
+                    komplectItems.push(this.products[key])
+                }
+            }
+            return komplectItems;
         }
     }
 }

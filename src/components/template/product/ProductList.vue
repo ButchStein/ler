@@ -1,7 +1,7 @@
 <template>
     <div class="product-list__item">
-        <input type="checkbox" :value="item.id" :id="id" v-model="checked" @change="change()"/>
-        <label :for="id" class="product-list__item-label">
+        <!-- <input type="checkbox" :value="item.id" :id="id" v-model="checked" @change="change()"/> -->
+        <div class="product-list__item-label" @click="change()" :class="{checked: checked}">
             <div class="product-list__item-img" :style="{'border-color': item.color}">
                 <img :src="item.photo"/>
             </div>
@@ -16,26 +16,24 @@
             </div>
             <div class="product-list__item-button" v-if="checked">Убрать</div>
             <div class="product-list__item-button" v-else>Добавить</div>
-        </label>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     props: [ 'item' ],
-    data() {
-        return {
-            checked: false
-        }
-    },
     computed: {
         id() {
             return this._uid
+        },
+        checked() {
+            return this.$store.getters.cart.indexOf(this.item) >= 0
         }
     },
     methods: {
         change() {
-            let action = (this.checked) ? 'cartAddItem': 'cartRemoveItem'
+            let action = (!this.checked) ? 'cartAddItem': 'cartRemoveItem'
             this.$store.commit(action, this.item)
         }
     }
@@ -123,7 +121,8 @@ export default {
         background: url(../../../assets/ic_plus.svg) 50% 50% no-repeat;
         background-size: 10px 10px;
 
-input[type=checkbox]:checked + .product-list__item-label
+//input[type=checkbox]:checked + .product-list__item-label
+.product-list__item-label.checked
     border: 4px solid #24BBF6;
 
     .product-list__item-button

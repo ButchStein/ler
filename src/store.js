@@ -11,6 +11,7 @@ export default new Vuex.Store({
     categories: [],
     groups: [],
     products: [],
+    packages: [],
     step: 0,
     paths: {
       initial: ["HouseChoose"],
@@ -66,6 +67,9 @@ export default new Vuex.Store({
     setProducts(state, data) {
       state.products = data
     },
+    setPackages(state, data) {
+      state.packages = data
+    },
     reset(state) {
       state.path = state.paths.initial
       state.step = 0
@@ -79,6 +83,12 @@ export default new Vuex.Store({
     feedback(state) {
       state.path = state.paths.feedback
       state.step = 0
+    },
+    cartKomplect(state, komplect) {
+      state.cart = []
+      for(let key in komplect) {
+        state.cart.push(komplect[key])
+      }
     }
   },
   actions: {
@@ -112,6 +122,16 @@ export default new Vuex.Store({
         })
       })
     },
+    loadPackages({commit}) {
+      return new Promise(function(resolve, reject) {
+        axios.get(api_url + 'packages').then( function(resp) {
+          commit('setPackages', resp.data)
+          resolve(resp)
+        }).catch(function(err) {
+          reject(err)
+        })
+      })
+    },
   },
   getters: {
     path(state) {
@@ -128,6 +148,9 @@ export default new Vuex.Store({
     },
     categories({categories}) {
       return categories
+    },
+    packages({packages}) {
+      return packages
     },
     products({products, filter}) {
       let result = [];
