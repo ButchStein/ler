@@ -100,15 +100,16 @@ export default {
 }
 
 .product-list__item-button {
+  min-width: 120px;
+  max-width: 120px;
   display: inline-block;
   border: 0;
-  line-height: 1;
   font-size: 15px;
   font-weight: 600;
-  height: 38px;
-  line-height: 38px;
+  height: 45px;
+  line-height: 44px;
+  padding-top: 1px;
   padding-left: 16px;
-  padding-right: 45px;
   background: #24BBF6;
   border-radius: 2px;
   position: relative;
@@ -177,6 +178,12 @@ export default {
             &-price {
                 margin-bottom: 24px;
                 text-align: right;
+            }
+
+            &-button {
+                height: 40px;
+                line-height: 38px;
+                padding-top: 2px;
             }
         }
     }
