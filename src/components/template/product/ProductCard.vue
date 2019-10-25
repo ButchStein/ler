@@ -1,10 +1,10 @@
 <template>
-    <div class="product row">
+    <div class="product" :class="(product.subtitutes.length) && 'product--variants'">
         <div class="product__variants" v-if="product.subtitutes.length">
             <div style="margin-bottom:26px">Все варианты</div>
-            <div class="product__variants__item" 
-            v-for="item in subtitutes" 
-            :key="item.id" 
+            <div class="product__variants__item"
+            v-for="item in subtitutes"
+            :key="item.id"
             :class="{active: item.id == product.id }"
             @click="$store.commit('show', item)"
             >
@@ -25,15 +25,18 @@
                     <div class="product__brief-desc">{{product.short_desc}}</div>
                     <div class="product__brief-warning" v-if="product.additional_short_desc">{{product.additional_short_desc}}</div>
                     <div class="product__brief-price price">{{product.price}}</div>
+                    <div class="product__variants-mobile" v-if="product.subtitutes.length">
+                        <button class="button  button-secondary">Все варианты</button>
+                    </div>
                 </div>
             </div>
             <div class="product__detailed">
                 <div class="product__tabs">
-                    <div class="product__tabs-tab" 
-                    @click="activeTab = true" 
+                    <div class="product__tabs-tab"
+                    @click="activeTab = true"
                     :class="{active: activeTab}">Описание</div>
-                    <div class="product__tabs-tab" 
-                    @click="activeTab = false" 
+                    <div class="product__tabs-tab"
+                    @click="activeTab = false"
                     :class="{active: !activeTab}">Характеристики</div>
                 </div>
                 <div class="product__tabs-content">
@@ -80,124 +83,216 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.product__preview
-    display: flex
-    margin-bottom: 50px
+<style lang="scss">
+.product__preview {
+  display: flex;
+  margin-bottom: 50px;
+}
 
-.product__variants
-        width: 310px
-        padding-right: 50px
+.product__variants {
+  width: 310px;
+  padding-right: 50px;
+}
 
-.product__variants__item
-    display: flex
-    align-items: center
-    cursor: pointer
-    overflow: hidden;
-    padding: 12px 0
-    border-top: 1px solid rgba(210,211,211,.5)
+.product__variants__item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 12px 0;
+  border-top: 1px solid rgba(210, 211, 211, 0.5);
+}
+.product__variants__item > div {
+  flex-grow: 1;
+  margin: 0 12px;
+}
+.product__variants__item:last-child {
+  border-bottom: 1px solid rgba(210, 211, 211, 0.5);
+}
+.product__variants__item-img {
+  max-width: 39px;
+  max-height: 39px;
+  float: right;
+}
+.product__variants__item:before {
+  content: " ";
+  border: 2px solid #D2D3D3;
+  box-sizing: border-box;
+  border-radius: 100px;
+  width: 28px;
+  height: 28px;
+  display: block;
+  float: left;
+}
+.product__variants__item.active:before {
+  background: url("../../../assets/active.svg") 0 0 no-repeat;
+  border: 0;
+}
+.product__variants__item-warning {
+  color: #000;
+}
 
-    &>div
-        flex-grow: 1
-        margin: 0 12px
+.product__info {
+  width: 660px;
+}
 
-    &:last-child
-        border-bottom: 1px solid rgba(210,211,211,.5)
+.product__brief {
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.product__brief-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 22px;
+  color: #000;
+  margin-bottom: 24px;
+}
+.product__brief-desc {
+  line-height: 18px;
+  margin-bottom: 25px;
+}
+.product__brief-warning {
+  color: #000;
+}
+.product__brief-warning:before {
+  width: 17px;
+  height: 17px;
+  background: url("../../../assets/warning.svg") 50% 50% no-repeat;
+  background-size: 100% 100%;
+  content: " ";
+  display: inline-block;
+}
+.product__brief-price {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 32px;
+  margin-top: auto;
+  color: #000;
+}
 
-    &-img
-        max-width: 39px
-        max-height: 39px
-        float: right
-    
-    &:before
-        content: ' '
-        border: 2px solid #D2D3D3;
-        box-sizing: border-box;
-        border-radius: 100px;
-        width: 28px
-        height: 28px
-        display: block
-        float: left
+.product__preview-pic {
+  width: 274px;
+  height: 274px;
+  border: 12px solid transparent;
+  flex-shrink: 0;
+}
+.product__preview-pic img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
-    &.active
-        &:before
-           background: url('../../../assets/active.svg') 0 0 no-repeat;
-           border: 0
+.product__tabs {
+  border-bottom: 1px solid rgba(210, 211, 211, 0.5);
+  margin-bottom: 32px;
+}
+.product__tabs-tab {
+  display: inline-block;
+  border-bottom: 4px solid transparent;
+  margin-bottom: -1px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 16px 0;
+  margin-right: 32px;
+  cursor: pointer;
+}
+.product__tabs-tab.active {
+  border-bottom: 4px solid #24BBF6;
+  color: #000;
+}
+.product__tabs-content {
+  font-size: 15px;
+  line-height: 25px;
+  color: #000000;
+}
+.product__tabs-content p {
+  margin: 0.5em 0;
+}
 
-    &-warning
-        color: #000
+.product {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px;
+    background-color: #fff;
 
-.product__info
-        width: 660px
+    &__info {
+        width: auto;
+    }
 
-.product__brief
-    padding-left: 32px;
-    display: flex
-    flex-direction: column
+    &__variants {
+        flex-shrink: 0;
 
-    &-title
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 22px;
-        color: #000;
-        margin-bottom: 24px;
-    
-    &-desc 
-        line-height: 18px
-        margin-bottom: 25px
-    
-    &-warning
-        color: #000
+        &-mobile {
+            display: none;
+        }
+    }
 
-        &:before
-            width: 17px;
-            height: 17px;
-            background: url('../../../assets/warning.svg') 50% 50% no-repeat
-            background-size: 100% 100%
-            content: ' '
-            display: inline-block
+    &--variants {
+        max-width: 1140px;
+        display: flex;
+        align-items: flex-start;
+    }
+}
 
-    &-price
-        font-weight: 600;
-        font-size: 30px;
-        line-height: 32px;
-        margin-top: auto
-        color: #000
+@media (max-width: 991px) {
+    .product {
+        flex-grow: 1;
+        max-width: 100%;
+    }
 
-.product__preview-pic
-    width: 274px
-    height: 274px
-    border: 12px solid transparent;
-    flex-shrink: 0
+    .product--variants {
 
-    img
-        max-width: 100%
-        max-height: 100%
+        .product__variants {
+            display: none;
 
-.product__tabs
-    border-bottom: 1px solid rgba(210,211,211,.5)
-    margin-bottom: 32px
+            &-mobile {
+                display: block;
+                margin-top: 35px;
 
-    &-tab
-        display: inline-block;
-        border-bottom: 4px solid transparent
-        margin-bottom: -1px
-        font-weight: 600;
-        letter-spacing: 0.01em;
-        padding: 16px 0
-        margin-right: 32px
-        cursor: pointer
+                .button {
+                    min-width: 270px;
+                    font-size: 15px;
+                    text-transform: none;
+                }
+            }
+        }
+    }
+}
 
-        &.active
-            border-bottom: 4px solid #24BBF6;
-            color: #000
+@media (max-width: 767px) {
+    .product {
+        flex-grow: 1;
+        padding: 15px;
+        width: 100%;
 
-    &-content  
-        font-size: 15px;
-        line-height: 25px;
-        color: #000000;
+        &__variants {
+            display: none;
 
-        p
-            margin: .5em 0;
+            &-mobile {
+                display: block;
+                margin-top: 35px;
 
+                .button {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+
+        &__preview {
+            flex-direction: column;
+            margin-bottom: 30px;
+
+            &-pic {
+                margin: 16px auto;
+            }
+        }
+
+        &__brief {
+            padding: 0;
+            text-align: center;
+        }
+    }
+}
 </style>

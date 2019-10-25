@@ -128,6 +128,11 @@ export default {
   border-bottom: 0;
 }
 
+.container-left {
+    @include make-container-left();
+    @include make-container-half-widths();
+}
+
 @media (max-width: 991px) {
     .analyses {
         &__example {

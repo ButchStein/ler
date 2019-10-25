@@ -128,6 +128,17 @@ export default {
 
         &__actions {
             flex-wrap: wrap;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .step {
+        &__actions {
+            .button {
+                display: block;
+                width: 100%;
+            }
 
             .button + .button {
                 margin: 0;
@@ -135,6 +146,5 @@ export default {
             }
         }
     }
-
 }
 </style>

@@ -57,6 +57,7 @@ export default {
 <style lang="scss">
 .komplect {
     flex-grow: 1;
+    flex-basis: 100%;
 
     & + & {
         margin-left: 8px;

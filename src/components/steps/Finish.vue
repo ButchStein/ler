@@ -104,12 +104,12 @@ export default {
 
 <style lang="scss">
 .cards-komlects {
-    margin-bottom: 36px
+    margin-bottom: 36px;
+    flex-wrap: nowrap;
 }
 
 @media (max-width: 767px) {
     .cards-komlects {
-        flex-wrap: nowrap;
         overflow-x: auto;
     }
 }
