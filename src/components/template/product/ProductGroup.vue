@@ -2,6 +2,7 @@
     <div class="product-group">
         <div class="product-group__title">{{ group.name }}</div>
         <div class="product-group__desc">{{ group.description }}</div>
+        <div class="product-group__warning" v-if="chooseOne">Можно выбрать только один</div>
         <ProductList v-for="(item, index) in items" :key="index" :item="item"/>
     </div>
 </template>
@@ -13,6 +14,11 @@ export default {
     props: ['group', 'items'],
     components: {
         ProductList
+    },
+    computed: {
+        chooseOne() {
+            return this.group.id === this.$store.getters.chooseOneGroup
+        }
     }
 }
 </script>
@@ -36,6 +42,23 @@ export default {
         line-height: 28px;
         color: #666;
         margin-bottom: 36px;
+    }
+
+    &__warning {
+        margin-bottom: 26px;
+        font-size: 20px;
+        line-height: 28px;
+
+        &:after {
+            width: 17px;
+            height: 17px;
+            background: url("../../../assets/warning.svg") 50% 50% no-repeat;
+            background-size: 100% 100%;
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 6px;
+        }
     }
 }
 

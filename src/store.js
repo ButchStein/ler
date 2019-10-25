@@ -23,6 +23,7 @@ export default new Vuex.Store({
     },
     path: ["HouseChoose"],
     cart: [],
+    chooseOneGroup: 3,
     filter: {
       categories: null,
       is_home_count_p: null,
@@ -54,11 +55,21 @@ export default new Vuex.Store({
     finish(state) {
       state.step = state.path.length-2
     },
-    cartAddItem(state, id) {
-      state.cart.push(id)
+    cartAddItem(state, item) {
+      let chooseOne = state.chooseOneGroup;
+      
+      if(item.group_id == chooseOne ) {
+        for(let i in state.cart) {
+          if(state.cart[i].group_id == chooseOne) {
+            state.cart.splice(i, 1)
+            break;
+          }
+        }
+      }
+      state.cart.push(item)
     },
-    cartRemoveItem(state, id) {
-      state.cart.splice( state.cart.indexOf(id), 1 )
+    cartRemoveItem(state, item) {
+      state.cart.splice( state.cart.indexOf(item), 1 )
     },
     setCategories(state, data) {
       state.categories = data
@@ -142,6 +153,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    chooseOneGroup(state) {
+      return state.chooseOneGroup
+    },
     path(state) {
       return state.path
     },
