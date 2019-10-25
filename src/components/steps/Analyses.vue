@@ -4,8 +4,8 @@
             <step title="Введите данные анализа воды" showback="true" alignleft="true">
                 <template v-slot:body>
                     <form @submit.prevent="submitAnalyses()">
-                        <input-field title="Жёсткость" metric="мг-экв/л" v-model="analyses.hardness" required/>
-                        <input-field title="Железо" metric="мг/л" v-model="analyses.fe" required/>
+                        <input-field title="Общая жёсткость" metric="мг-экв/л" v-model="analyses.hardness" required/>
+                        <input-field title="Общее железо" metric="мг/л" v-model="analyses.fe" required/>
                         <button type="button" class="collapse__title" :class="{active: showAll}" @click="showAll = !showAll">
                             <div>Дополнительные показатели</div>
                             <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,11 +14,12 @@
                         </button>
                         <div class="collapse__body" v-if="showAll">
                             <input-field title="Нитраты" metric="мг/л" v-model="analyses.nitrati"/>
-                            <input-field title="Марганец" metric="мг/л" v-model="analyses.mg"/>
-                            <input-field title="Хлор" metric="мг/л" v-model="analyses.cl"/>
-                            <input-field title="Кадмий" metric="мг/л" v-model="analyses.cd"/>
-                            <input-field title="Никель" metric="мг/л" v-model="analyses.ni"/>
-                            <input-field title="Фтор" metric="мг/л" v-model="analyses.f"/>
+                            <input-field title="Нитриты" metric="мг/л" v-model="analyses.nitrite"/>
+                            <input-field title="Водородный показатель (pH)" metric="ед. pH" v-model="analyses.ph"/>
+                            <input-field title="Общее солесодержание (TDS)" metric="мг/л" v-model="analyses.tds"/>
+                            <input-field title="Перманганатная окисляемость" metric="мг О2/л" v-model="analyses.oxidizability"/>
+                            <input-field title="Цветность" metric="град." v-model="analyses.coloration"/>
+                            <input-field title="Мутность" metric="ЕМФ" v-model="analyses.turbidity"/>
                         </div>
                         <button type="submit" class='button button-primary analyses-submit'>Подобрать решение</button>
                     </form>
@@ -56,11 +57,12 @@ export default {
                 hardness: '',
                 fe: '',
                 nitrati: '',
-                mg: '',
-                cd: '',
-                cl: '',
-                ni: '',
-                f: ''
+                nitrite: '',
+                tds: '',
+                oxidizability: '',
+                ph: '',
+                turbidity: '',
+                coloration: ''
             }
         }
     }

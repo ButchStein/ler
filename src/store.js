@@ -34,11 +34,12 @@ export default new Vuex.Store({
         hardness: '',
         fe: '',
         nitrati: '',
-        mg: '',
-        cd: '',
-        cl: '',
-        ni: '',
-        f: ''
+        nitrite: '',
+        tds: '',
+        oxidizability: '',
+        ph: '',
+        turbidity: '',
+        coloration: ''
       }
     }
   },
