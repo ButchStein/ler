@@ -1,7 +1,7 @@
 <template>
     <div class="product-group">
-        <div class="product-group__title">{{ title }}</div>
-        <div class="product-group__desc"><slot></slot></div>
+        <div class="product-group__title">{{ group.name }}</div>
+        <div class="product-group__desc">{{ group.description }}</div>
         <ProductList v-for="(item, index) in items" :key="index" :item="item"/>
     </div>
 </template>
@@ -10,7 +10,7 @@
 import ProductList from './ProductList'
 
 export default {
-    props: ['title', 'items'],
+    props: ['group', 'items'],
     components: {
         ProductList
     }

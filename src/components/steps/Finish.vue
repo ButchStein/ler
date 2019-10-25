@@ -19,10 +19,10 @@
 
                         
                         <product-group 
-                        :title="group.name" 
+                        :group="group" 
                         :items="filterByGroup(products, group.id)" 
                         v-for="group in groups" 
-                        :key="group.id">Очистка питьевой воды</product-group>
+                        :key="group.id"/>
                     </template>
                 </step>
             </div>

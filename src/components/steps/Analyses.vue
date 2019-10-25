@@ -35,13 +35,11 @@
 
 <script>
 import Step from '../template/Step'
-import ActionButton from '../template/ActionButton'
 import InputField from '../template/InputField'
 
 export default {
     components: {
         Step,
-        ActionButton,
         InputField
     },
     methods: {

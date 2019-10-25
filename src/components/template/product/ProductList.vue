@@ -11,7 +11,7 @@
                 <a href="#" @click.prevent.self="$store.commit('show', item)">Подробнее</a>
             </div>
             <div class="product-list__item-price">
-                <div class="price price-old">{{ item.price }}</div>
+                <div class="price price-old" v-if="item.old_price">{{ item.old_price }}</div>
                 <div class="price">{{ item.price }}</div>
             </div>
             <div class="product-list__item-button" v-if="checked">Убрать</div>

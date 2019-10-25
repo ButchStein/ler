@@ -216,7 +216,7 @@ export default new Vuex.Store({
       return result;
     },
     groups({groups}) {
-      return groups
+      return groups.sort(function(a, b) { return a.order - b.order})
     },
     cartPrice({cart}) {
       let price = 0;
