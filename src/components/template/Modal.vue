@@ -1,6 +1,6 @@
 <template>
     <div class="modal__overlay" @click.self="$emit('close')" v-if="value">
-        <div class="modal">
+        <div class="modal" @click.self="$emit('close')">
             <div class="modal__content">
                 <div class="modal__close" @click="$emit('close')"><img src="../../assets/x.svg"/></div>
                 <slot></slot>

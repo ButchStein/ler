@@ -56,6 +56,7 @@ export default {
         line-height: 15px;
         letter-spacing: 0.01em;
         color: #000000;
+        margin-right: 20px;
     }
 
     &__text-title {
