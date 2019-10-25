@@ -65,18 +65,35 @@ export default {
   position: relative;
   z-index: 2;
   display: block;
-  border: 1px solid rgba(210, 211, 211, 0.5);
+  border: 4px solid transparent;
   background-color: #fff;
-  padding: 20px 24px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   &:hover {
       box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.12);
       z-index: 1;
       border-color: #fff;
   }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid rgba(210, 211, 211, 0.5);
+    transition: all .25s ease-out;
+  }
+
   &.checked {
+    &::before {
+        opacity: 0;
+        visibility: hidden;
+    }
     &:hover {
         border-color: #24BBF6;
     }
@@ -227,13 +244,13 @@ export default {
                 position: absolute;
                 top: 0;
                 left: 0;
-                margin-top: 7px;
+                margin-top: 0;
                 width: 60px;
                 height: 60px;
             }
 
             &-label {
-                padding: 16px;
+                padding: 12px;
                 display: flex;
                 flex-wrap: wrap;
             }

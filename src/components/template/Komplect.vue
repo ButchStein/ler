@@ -71,18 +71,34 @@ export default {
 
     & input[type='radio']:checked + label {
         border: 3px solid #24BBF6;
+
+        &::before {
+            opacity: 0;
+            visibility: hidden;
+        }
     }
 
     &__label {
         cursor: pointer;
         display: block;
         background: #fff;
-        border: 1px solid #D2D3D3;
+        border: 3px solid transparent;
         border-radius: 2px;
-        padding: 20px;
+        padding: 14px 17px;
         position: relative;
         z-index: 2;
         transition: box-shadow .25s, border .25s;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            bottom: -3px;
+            left: -3px;
+            right: -3px;
+            border: 1px solid #D2D3D3;
+            transition: all .25s, border .25s;
+        }
     }
 
     &__label:hover {
@@ -131,7 +147,7 @@ export default {
 
         &__label {
             flex: 1;
-            padding: 15px;
+            padding: 5px 16px;
         }
     }
 }
