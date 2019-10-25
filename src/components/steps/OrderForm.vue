@@ -5,7 +5,11 @@
                 <p>Мы перезвоним вам для уточнения условий заказа.</p>
             </template>
             <template v-slot:body>
-                <order-form/>
+                <div class="row">
+                    <div class="col-lg-7 col-md-12">
+                        <order-form/>
+                    </div>
+                </div>
             </template>
         </step>
     </div>
@@ -19,7 +23,7 @@ export default {
     components: {
         OrderForm,
         Step
-    }    
+    }
 }
 </script>
 

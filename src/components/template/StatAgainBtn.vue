@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 
@@ -18,5 +18,4 @@ export default {
         line-height: 21px;
         letter-spacing: 0.01em;
         display: inline-block
-            
 </style>

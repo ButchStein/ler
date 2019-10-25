@@ -1,6 +1,6 @@
 <template>
     <div class="analyses">
-        <div class="container-left analyses__step">
+        <div class="container-left  analyses__step">
             <step title="Введите данные анализа воды" showback="true" alignleft="true">
                 <template v-slot:body>
                     <form @submit.prevent="submitAnalyses()">
@@ -67,52 +67,86 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.analyses
+<style lang="scss">
+@import "../../styles/grid.sass";
+
+.analyses {
     display: flex;
     align-items: stretch;
     min-height: 100vh;
 
-    &-submit
+    &-submit {
         margin-top: 50px;
+    }
 
-.analyses__step
-    padding-right: 100px
+    &__left {
+        padding-left: 15px;
+        max-width: 360px;
+    }
 
-.analyses__example
-    background: #EFF1F1;
-    width: 50%
-    display: flex
-    justify-content: center
-    align-items: top
-    padding-top: 164px
-    text-align: center
+    &__step {
+        padding-right: 100px;
+    }
 
-    img
-        max-width: 100%;
-        height: auto
+    &__example {
+        background: #EFF1F1;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: top;
+        padding-top: 164px;
+        text-align: center;
 
-.collapse__title 
-    padding: 20px 0
-    font-size: 15px
-    color: #000
-    text-transform: uppercase
-    font-weight: bold
-    background: transparent
-    border: 0
-    border-top: 1px solid rgba(210,211,211,.5)
-    border-bottom: 1px solid rgba(210,211,211,.5)
-    display: block
-    width: 100%
-    text-align: left
-    display: flex
-    align-items: center
-    line-height: 1
-    cursor: pointer
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
 
-    svg
-        margin-left: auto
 
-    &.active
-        border-bottom: 0
+.collapse__title {
+  padding: 20px 0;
+  font-size: 15px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(210, 211, 211, 0.5);
+  border-bottom: 1px solid rgba(210, 211, 211, 0.5);
+  display: block;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  cursor: pointer;
+}
+.collapse__title svg {
+  margin-left: auto;
+}
+.collapse__title.active {
+  border-bottom: 0;
+}
+
+.container-left {
+    @include make-container-left();
+    @include make-container-half-widths();
+}
+
+@media (max-width: 991px) {
+    .analyses {
+        &__example {
+            display: none;
+        }
+
+        &__step {
+            @include make-container();
+            @include make-container-max-widths();
+            max-width: 100%;
+            padding: 0 24px;
+        }
+    }
+}
 </style>

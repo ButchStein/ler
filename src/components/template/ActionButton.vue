@@ -13,32 +13,51 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.button
-    border-radius: 2px
-    font-weight: 600
-    font-size: 20px
-    line-height: 20px
-    padding: 19px 17px
-    text-transform: uppercase
-    cursor: pointer
-    border: 2px solid #24BBF6;
-    letter-spacing: 0.5px;
+<style lang="scss">
+.button {
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 19px 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid #24BBF6;
+  letter-spacing: 0.5px;
 
-    & + .button
-        margin-left: 8px
+    & + & {
+        margin-left: 8px;
+    }
 
-.button-primary 
-    background: #24BBF6
-    color: #fff
-    &:hover
-        border-color: #12AAED
-        background: #12AAED
+    &-primary {
+        background: #24BBF6;
+        color: #fff;
+    }
 
-.button-secondary
-    color: #24BBF6
-    background: #fff
-    &:hover
+    &-primary:hover {
+        border-color: #12AAED;
+        background: #12AAED;
+    }
+
+    &-secondary {
+        color: #24BBF6;
+        background: #fff;
+    }
+
+    &-secondary:hover {
         background: rgba(36, 187, 246, 0.1);
+    }
+}
+
+@media (max-width: 767px) {
+    .button {
+        text-transform: none;
+        font-size: 15px;
+        letter-spacing: 0;
+        padding: 0 20px;
+        height: 55px;
+        line-height: 51px;
+    }
+}
 
 </style>

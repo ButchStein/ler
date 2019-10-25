@@ -2,13 +2,19 @@
 <div class="container">
     <step title="Сколько человек живет в вашем доме?" alignleft="true" showback="true">
         <template v-slot:body>
-            <div class="cards cards-left">
-                <card title="1-3 человека" desc="Решения для многоквартирных домов" @click="setPeople('3')">
-                    <img src="../../assets/3p.png"/>
-                </card>
-                <card title="Более 3 человек" desc="Решения для многоквартирных домов" @click="setPeople('3+')">
-                    <img src="../../assets/3pp.png"/>
-                </card>
+            <div class="row">
+                <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
+                    <card title="1-3 человека" desc="Решения для многоквартирных домов" @click="setPeople('3')">
+                        <img src="../../assets/3p.png"/>
+                    </card>
+                </div>
+
+
+                <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
+                    <card title="Более 3 человек" desc="Решения для многоквартирных домов" @click="setPeople('3+')">
+                        <img src="../../assets/3pp.png"/>
+                    </card>
+                </div>
             </div>
         </template>
     </step>
