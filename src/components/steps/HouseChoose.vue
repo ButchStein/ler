@@ -10,7 +10,6 @@
                     </card>
                 </div>
 
-
                 <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
                     <card @click="choosePath('house')" title="В частный дом"
                     desc="Решения для частных домов с постоянным отоплением." actiontext="Начать">
@@ -48,11 +47,11 @@ export default {
                     break;
                 case 'house':
                     this.$store.commit('setPath', 'house')
-                    this.$store.commit('setFilter', {categories: 2})
+                    this.$store.commit('setFilter', {categories: 1})
                     break;
                 case 'dacha':
                     this.$store.commit('setPath', 'house')
-                    this.$store.commit('setFilter', {categories: 1})
+                    this.$store.commit('setFilter', {categories: 2})
                     break;
             }
             this.$store.commit('nextStep')
