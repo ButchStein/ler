@@ -154,6 +154,7 @@ export default {
 }
 .product__brief-warning {
   color: #000;
+  line-height: 1.5;
 }
 .product__brief-warning:before {
   width: 17px;
@@ -162,6 +163,8 @@ export default {
   background-size: 100% 100%;
   content: " ";
   display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 .product__brief-price {
   font-weight: 600;

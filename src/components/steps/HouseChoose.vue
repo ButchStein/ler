@@ -4,20 +4,23 @@
         <template v-slot:body>
             <div class="row">
                 <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
-                    <card @click="choosePath('flat')" title="В квартиру" desc="Решения для многоквартирных домов" actiontext="Начать">
+                    <card @click="choosePath('flat')" title="В квартиру" 
+                    desc="Решения для квартир в домах с несколькими этажами." actiontext="Начать">
                         <img src="../../assets/flat.png"/>
                     </card>
                 </div>
 
 
                 <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
-                    <card @click="choosePath('house')" title="В загородный дом" desc="Решения для многоквартирных домов" actiontext="Начать">
+                    <card @click="choosePath('house')" title="В частный дом"
+                    desc="Решения для частных домов с постоянным отоплением." actiontext="Начать">
                         <img src="../../assets/house.png"/>
                     </card>
                 </div>
 
                 <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
-                    <card @click="choosePath('dacha')" title="На дачу" desc="Решения для многоквартирных домов" actiontext="Начать">
+                    <card @click="choosePath('dacha')" title="На дачу" 
+                    desc="Решения для загородного дома с сезонным отоплением." actiontext="Начать">
                         <img src="../../assets/dacha.png"/>
                     </card>
                 </div>

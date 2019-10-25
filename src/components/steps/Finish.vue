@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-8  col-lg-9  col-md-12">
-                <step title="Введите данные анализа воды" showback="true" alignleft="true">
+                <step title="Ваше индивидуальное решение" showback="true" alignleft="true">
                     <template v-slot:desc>
                         <p>Воспользуйтесь рекомендуемыми комплектациями либо выберите решения из списка.</p>
                     </template>
@@ -44,9 +44,11 @@
             </div>
         </div>
     </div>
-    <modal v-model="popup" @close="$store.commit('hide')">
-        <product-card :product="$store.getters.product"/>
-    </modal>
+    <transition name="fade">
+        <modal v-model="popup" @close="$store.commit('hide')">
+            <product-card :product="$store.getters.product"/>
+        </modal>
+    </transition>
 </div>
 </template>
 
@@ -108,6 +110,13 @@ export default {
 </script>
 
 <style lang="scss">
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
 .cards-komlects {
     margin-bottom: 36px;
     flex-wrap: nowrap;
