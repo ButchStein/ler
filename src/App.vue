@@ -9,6 +9,7 @@
 import 'reset-css'
 import './styles/grid.sass'
 import './styles/forms.sass'
+import './fonts/fonts.css'
 import AppHeader from './components/template/Header'
 import HouseChoose from './components/steps/HouseChoose'
 import SmellChoose from './components/steps/SmellChoose'
