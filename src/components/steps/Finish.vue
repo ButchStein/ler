@@ -92,7 +92,7 @@ export default {
                 this.$store.commit('feedback')
             }
 
-            return result
+            return result.sort(function(a, b) { return a.price - b.price })
         },
         calcKomplect(items) {
             let komplectItems = []
