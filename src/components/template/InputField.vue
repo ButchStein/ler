@@ -2,7 +2,7 @@
     <label class="input-component">
         <div class="input-component__title">{{ title }}</div>
         <div class="input-component__field">
-            <input type="number" :value="value" @input="$emit('input', $event.target.value)" placeholder="0" :required="required"/>
+            <input type="number" step="0.01" :value="value" @input="$emit('input', $event.target.value)" placeholder="0" :required="required"/>
             <div class="input-component__field-metric">{{ metric }}</div>
         </div>
     </label>
