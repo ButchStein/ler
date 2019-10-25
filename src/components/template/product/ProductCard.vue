@@ -220,7 +220,9 @@ export default {
     background-color: #fff;
 
     &__info {
-        width: auto;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
     }
 
     &__variants {
