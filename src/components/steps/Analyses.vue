@@ -53,17 +53,7 @@ export default {
     data() {
         return {
             showAll: false,
-            analyses: {
-                hardness: '',
-                fe: '',
-                nitrati: '',
-                nitrite: '',
-                tds: '',
-                oxidizability: '',
-                ph: '',
-                turbidity: '',
-                coloration: ''
-            }
+            analyses: {...this.$store.getters.analyses}
         }
     }
 }

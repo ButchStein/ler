@@ -51,7 +51,15 @@ export default new Vuex.Store({
       state.step++
     },
     prevStep(state) {
-      state.step--
+      //ВНИМАНИЕ, ТУТ КОСТЫЛЬ
+
+      if(state.path[state.step-1] === "Analyses" && state.filter.has_analyses === false) {
+        state.step = state.step - 2
+      } else {
+        state.step--
+      }
+
+      
     },
     finish(state) {
       state.step = state.path.length-2
@@ -252,6 +260,9 @@ export default new Vuex.Store({
           if(products[i].id === id) return products[i]
         }
       }
+    },
+    analyses({filter}) {
+      return filter.analyses
     }
   }
 })

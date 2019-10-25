@@ -179,6 +179,7 @@ export default {
   height: 274px;
   border: 12px solid transparent;
   flex-shrink: 0;
+  border-radius: 100%;
 }
 .product__preview-pic img {
   max-width: 100%;
