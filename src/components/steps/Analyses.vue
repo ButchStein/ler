@@ -1,6 +1,6 @@
 <template>
     <div class="analyses">
-        <div class="container-left  analyses__step">
+        <div class="container-left analyses__step">
             <step title="Введите данные анализа воды" showback="true" alignleft="true">
                 <template v-slot:body>
                     <form @submit.prevent="submitAnalyses()">
@@ -70,6 +70,25 @@ export default {
 <style lang="scss">
 @import "../../styles/grid.sass";
 
+
+@media(min-width: 992px) {
+    .analyses__step {
+        padding-right: 50px !important;
+    }
+    .analyses__example {
+        padding-left: 50px !important;
+    }
+}
+
+@media(min-width: 1140px) {
+    .analyses__step {
+        padding-right: 100px !important;
+    }
+    .analyses__example {
+        padding-left: 100px !important;
+    }
+}
+
 .analyses {
     display: flex;
     align-items: stretch;
@@ -82,10 +101,6 @@ export default {
     &__left {
         padding-left: 15px;
         max-width: 360px;
-    }
-
-    &__step {
-        padding-right: 100px;
     }
 
     &__example {

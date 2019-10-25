@@ -1,6 +1,5 @@
 <template>
     <div class="product-list__item">
-        <!-- <input type="checkbox" :value="item.id" :id="id" v-model="checked" @change="change()"/> -->
         <div class="product-list__item-label" @click="change()" :class="{checked: checked}">
             <div class="product-list__item-inner">
                 <div class="product-list__item-img" :style="{'border-color': item.color}">
@@ -17,7 +16,7 @@
                 <div class="price">{{ item.price }}</div>
             </div>
             <div class="product-list__item-button" v-if="checked">Убрать</div>
-            <div class="product-list__item-button" v-else>Добавить</div>
+            <div class="product-list__item-button" v-else>Выбрать</div>
         </div>
     </div>
 </template>
@@ -45,9 +44,6 @@ export default {
 <style lang="scss">
 .product-list__item {
   margin-bottom: 12px;
-}
-.product-list__item input[type=checkbox] {
-  display: none;
 }
 
 .product-list__item-img {
@@ -132,14 +128,14 @@ export default {
   background-size: 10px 10px;
 }
 
-input[type=checkbox]:checked + .product-list__item-label {
+.product-list__item-label.checked {
   border: 4px solid #24BBF6;
 }
-input[type=checkbox]:checked + .product-list__item-label .product-list__item-button {
+.product-list__item-label.checked .product-list__item-button {
   background: rgba(36, 187, 246, 0.15);
   color: #24BBF6;
 }
-input[type=checkbox]:checked + .product-list__item-label .product-list__item-button:after {
+.product-list__item-label.checked .product-list__item-button:after {
   background: url(../../../assets/ic_cancel.svg) 50% 50% no-repeat;
 }
 
