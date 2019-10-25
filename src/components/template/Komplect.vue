@@ -1,7 +1,7 @@
 <template>
 <div class="komplect">
     <input type="radio" name="komplect" style="display:none;" :id="id"/>
-    <label class="komplect__label" :for="id">
+    <label class="komplect__label" :for="id" @click="change()">
         <header class="komplect__title">{{ title }}</header>
         <div class="komplect__desc">{{ desc }}</div>
         <footer class="komplect__footer">
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-    props: [ 'rating', 'title', 'desc', 'price' ],
+    props: [ 'rating', 'title', 'desc', 'items' ],
     data() {
         return {
             isActive: false
@@ -37,6 +37,18 @@ export default {
         },
         id() {
             return this._uid
+        },
+        price() {
+            let price = 0
+            for(let i=0; i<this.items.length; i++) {
+                price += this.items[i].price
+            }
+            return price;
+        }
+    },
+    methods: {
+        change() {
+            this.$store.commit('cartKomplect', this.items)
         }
     }
 }
@@ -141,3 +153,4 @@ export default {
     }
 }
 </style>
+

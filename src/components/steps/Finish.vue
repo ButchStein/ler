@@ -9,9 +9,12 @@
                     </template>
                     <template v-slot:body>
                         <div class="cards cards-komlects">
-                            <komplect title="Бюджетный" desc="Для бичей" rating="3.5" price="3500"/>
-                            <komplect title="Бюджетный" desc="Для бичей" rating="4" price="6000"/>
-                            <komplect title="Бюджетный" desc="Для бичей" rating="5" price="9000"/>
+                            <komplect :key="komplect.id"
+                            v-for="komplect in $store.getters.packages"
+                            :title="komplect.name"
+                            :desc="komplect.description"
+                            :rating="komplect.rating"
+                            :items="calcKomplect(komplect.products)"/>
                         </div>
 
 
@@ -42,6 +45,9 @@
             </div>
         </div>
     </div>
+    <modal v-model="popup" @close="$store.commit('hide')">
+        <product-card :product="$store.getters.product"/>
+    </modal>
 </div>
 </template>
 
@@ -49,9 +55,11 @@
 import Step from '../template/Step'
 import Komplect from '../template/Komplect'
 import ProductGroup from '../template/product/ProductGroup'
+import ProductCard from '../template/product/ProductCard'
 import CartSummary from '../template/CartSummary'
 import ConsultForm from '../template/ConsultForm'
 import SupportPhone from '../template/SupportPhone'
+import Modal from '../template/Modal'
 
 export default {
     components: {
@@ -60,7 +68,9 @@ export default {
         ProductGroup,
         CartSummary,
         ConsultForm,
-        SupportPhone
+        SupportPhone,
+        Modal,
+        ProductCard
     },
     computed: {
         groups() {
@@ -68,6 +78,9 @@ export default {
         },
         products() {
             return this.$store.getters.products
+        },
+        popup() {
+            return this.$store.getters.product !== null
         }
     },
     methods: {
@@ -75,6 +88,15 @@ export default {
             return array.filter( function(item) {
                 return item.group_id == id
             } )
+        },
+        calcKomplect(items) {
+            let komplectItems = []
+            for(let key in this.products) {
+                if(items.indexOf(this.products[key].id) >= 0) {
+                    komplectItems.push(this.products[key])
+                }
+            }
+            return komplectItems;
         }
     }
 }

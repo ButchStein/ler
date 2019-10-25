@@ -1,7 +1,7 @@
 <template>
     <div class="product-list__item">
-        <input type="checkbox" :value="item.id" :id="id" v-model="checked" @change="change()"/>
-        <label :for="id" class="product-list__item-label">
+        <!-- <input type="checkbox" :value="item.id" :id="id" v-model="checked" @change="change()"/> -->
+        <div class="product-list__item-label" @click="change()" :class="{checked: checked}">
             <div class="product-list__item-inner">
                 <div class="product-list__item-img" :style="{'border-color': item.color}">
                     <img :src="item.photo"/>
@@ -9,37 +9,33 @@
                 <div class="product-list__item-info">
                     <div class="product-list__item-title">{{item.name}}</div>
                     <div class="product-list__item-desc">{{item.short_desc}}</div>
-                    <a href="#">Подробнее</a>
+                    <a href="#" @click.prevent.self="$store.commit('show', item)">Подробнее</a>
                 </div>
             </div>
-            <div class="product-list__control">
-                <div class="product-list__item-price">
-                    <div class="price price-old">{{ item.price }}</div>
-                    <div class="price">{{ item.price }}</div>
-                </div>
-                <div class="product-list__item-button" v-if="checked">Убрать</div>
-                <div class="product-list__item-button" v-else>Добавить</div>
+            <div class="product-list__item-price">
+                <div class="price price-old">{{ item.price }}</div>
+                <div class="price">{{ item.price }}</div>
             </div>
-        </label>
+            <div class="product-list__item-button" v-if="checked">Убрать</div>
+            <div class="product-list__item-button" v-else>Добавить</div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     props: [ 'item' ],
-    data() {
-        return {
-            checked: false
-        }
-    },
     computed: {
         id() {
             return this._uid
+        },
+        checked() {
+            return this.$store.getters.cart.indexOf(this.item) >= 0
         }
     },
     methods: {
         change() {
-            let action = (this.checked) ? 'cartAddItem': 'cartRemoveItem'
+            let action = (!this.checked) ? 'cartAddItem': 'cartRemoveItem'
             this.$store.commit(action, this.item)
         }
     }

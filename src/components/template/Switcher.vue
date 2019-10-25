@@ -14,8 +14,14 @@
 <script>
 export default {
     props: {
-        title: '',
-        isActive: false
+        title: {
+            type: String,
+            default: ''
+        },
+        isActive: {
+            type: Boolean,
+            default: false
+        }
     },
     model: {
         event: 'change',

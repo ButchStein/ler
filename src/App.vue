@@ -44,6 +44,7 @@ export default {
   mounted() {
     this.$store.dispatch('loadGroups');
     this.$store.dispatch('loadProducts');
+    this.$store.dispatch('loadPackages');
   }
 }
 </script>
