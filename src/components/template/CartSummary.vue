@@ -196,4 +196,25 @@ export default {
     }
 }
 
+@media (max-width: 767px) {
+  .cart-summary {
+
+    &__total {
+      margin-bottom: 10px;
+    }
+
+    &__products {
+      margin-bottom: 10px;
+    }
+  }
+
+  .cart-summary.fixed {
+
+
+    .cart-summary__products {
+      display: none;
+    }
+  }
+}
+
 </style>

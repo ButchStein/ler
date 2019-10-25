@@ -8,8 +8,8 @@
                     <img class="header__logo" src="../../assets/logo.png"/>
                 </picture>
                 <div class="header__descriptor">Подбор комплексного решения для вашего дома</div>
-                <div class="header__phone">8 800 100-100-7</div>
-                <a href="#" class="header__tel">
+                <a href="tel:88001001007" class="header__phone">8 800 100-100-7</a>
+                <a href="tel:88001001007" class="header__tel">
                     <img src="../../assets/phone.svg" alt="">
                 </a>
             </div>
@@ -69,6 +69,10 @@
     .header {
         padding: 12px 0;
         border: none;
+
+        &__logo {
+            margin: 0;
+        }
 
         &__inner {
             justify-content: space-between;
