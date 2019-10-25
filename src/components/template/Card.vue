@@ -30,13 +30,15 @@ export default {
 
 <style lang="scss">
 .card {
+  position: relative;
+  z-index: 2;
   background: #FFFFFF;
   padding: 40px;
   text-align: center;
   cursor: pointer;
   border: 1px solid rgba(210, 211, 211, 0.5);
   border-radius: 6px;
-  transition: all 0.25s;
+  transition: box-shadow 0.25s;
 
   + .card {
     margin-left: 15px;
@@ -45,6 +47,7 @@ export default {
   &:hover {
     box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(210, 211, 211, 0.25);
+    z-index: 1;
   }
 }
 

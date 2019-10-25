@@ -74,11 +74,15 @@ export default {
         border: 1px solid #D2D3D3;
         border-radius: 2px;
         padding: 20px;
+        position: relative;
+        z-index: 2;
+        transition: box-shadow .25s, border .25s;
     }
 
     &__label:hover {
         box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.12);
         border-color: #fff;
+        z-index: 1;
     }
 
     &__label label {

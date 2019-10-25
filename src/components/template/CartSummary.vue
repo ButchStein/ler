@@ -101,6 +101,7 @@ export default {
   left: 0;
   padding: 20px;
   margin-bottom: 0;
+  z-index: 100;
 }
 
 .cart-summary__total {

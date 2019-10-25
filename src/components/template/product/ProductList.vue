@@ -60,6 +60,9 @@ export default {
 }
 
 .product-list__item-label {
+  transition: box-shadow .25s, border .25s;
+  position: relative;
+  z-index: 2;
   display: block;
   border: 1px solid rgba(210, 211, 211, 0.5);
   background-color: #fff;
@@ -67,6 +70,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &:hover {
+      box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.12);
+      z-index: 1;
+      border-color: #fff;
+  }
+  &.checked {
+    &:hover {
+        border-color: #24BBF6;
+    }
+  }
 }
 
 .product-list__item-info {
