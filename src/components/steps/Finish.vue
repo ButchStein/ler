@@ -11,9 +11,7 @@
                         <div class="cards cards-komlects">
                             <komplect :key="komplect.id"
                             v-for="komplect in $store.getters.packages"
-                            :title="komplect.name"
-                            :desc="komplect.description"
-                            :rating="komplect.rating"
+                            :komplect="komplect"
                             :items="calcKomplect(komplect.products)"/>
                         </div>
                                 

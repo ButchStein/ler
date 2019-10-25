@@ -1,9 +1,9 @@
 <template>
 <div class="komplect">
-    <input type="radio" name="komplect" style="display:none;" :id="id"/>
+    <input type="radio" name="komplect" style="display:none;" :id="id" :checked="checked"/>
     <label class="komplect__label" :for="id" @click="change()">
-        <header class="komplect__title">{{ title }}</header>
-        <div class="komplect__desc">{{ desc }}</div>
+        <header class="komplect__title">{{ komplect.name }}</header>
+        <div class="komplect__desc">{{ komplect.desc }}</div>
         <footer class="komplect__footer">
             <div class="komplect__price price">{{ price }}</div>
             <div class="komplect__stars">
@@ -17,13 +17,14 @@
 
 <script>
 export default {
-    props: [ 'rating', 'title', 'desc', 'items' ],
-    data() {
-        return {
-            isActive: false
-        }
-    },
+    props: [ 'komplect', 'items' ],
     computed: {
+        checked() {
+            return this.$store.getters.komplectId == this.komplect.id
+        },
+        rating() {
+            return this.komplect.rating
+        },
         stars() {
             let stars = [];
             let total = Math.floor(this.rating)
@@ -48,8 +49,13 @@ export default {
     },
     methods: {
         change() {
-            this.$store.commit('cartKomplect', this.items)
+            this.$store.commit('cartKomplect', {id: this.komplect.id, items: this.items})
         }
+    },
+    mounted() {
+        if(this.checked) {
+            this.$store.commit('cartKomplect', {id: this.komplect.id, items: this.items})
+        } 
     }
 }
 </script>
@@ -110,6 +116,10 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    &__stars {
+        white-space: nowrap;
     }
 }
 

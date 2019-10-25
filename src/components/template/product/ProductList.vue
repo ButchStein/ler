@@ -36,6 +36,7 @@ export default {
         change() {
             let action = (!this.checked) ? 'cartAddItem': 'cartRemoveItem'
             this.$store.commit(action, this.item)
+            this.$store.commit('resetKomplect')
         }
     }
 }
