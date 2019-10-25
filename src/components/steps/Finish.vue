@@ -81,9 +81,15 @@ export default {
     },
     methods: {
         filterByGroup(array, id) {
-            return array.filter( function(item) {
+            let result = array.filter( function(item) {
                 return item.group_id == id
             } )
+
+            if (!result.length) {
+                this.$store.commit('feedback')
+            }
+
+            return result
         },
         calcKomplect(items) {
             let komplectItems = []

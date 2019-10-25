@@ -2,7 +2,7 @@
     <label class="input-component">
         <div class="input-component__title">{{ title }}</div>
         <div class="input-component__field">
-            <input type="text" :value="value" @input="$emit('input', $event.target.value)" placeholder="0"/>
+            <input type="text" :value="value" @input="$emit('input', $event.target.value)" placeholder="0" :required="required"/>
             <div class="input-component__field-metric">{{ metric }}</div>
         </div>
     </label>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props: ['value', 'title', 'metric']
+    props: ['value', 'title', 'metric', 'required']
 }
 </script>
 

@@ -28,6 +28,7 @@ export default new Vuex.Store({
       is_home_count_p: null,
       hardness: false,
       fe: false,
+      has_analyses: false,
       analyses: {
         hardness: '',
         fe: '',
@@ -169,7 +170,7 @@ export default new Vuex.Store({
         // количествео человек
         if(filter.categories < 3) { // для дома и дачи
           if(
-              (products[i].is_home_count_p === "Оба варианта") 
+              (products[i].is_home_count_p === "Оба ваианта") 
               || 
               (products[i].is_home_count_p === filter.is_home_count_p)
             ) {
