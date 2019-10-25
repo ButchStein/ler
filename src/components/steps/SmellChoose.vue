@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
-                    <card title="Да" desc="Есть посторонний запах" @click="$store.commit('nextStep')">
+                    <card title="Да" desc="Есть посторонний запах" @click="$store.commit('feedback')">
                         <img src="../../assets/smell-yes.png"/>
                     </card>
                 </div>

@@ -6,7 +6,7 @@
                 <input v-model="params.name" name="name" type="text" class="form-input" placeholder="Имя" required/>
             </div>
             <div class="col-lg-4  col-md-6">
-                <input v-model="params.phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
+                <input v-mask="'+7 (999) 999-99-99'" v-model="params.phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
             </div>
             <div class="col-lg-4">
                 <button type="submit" class="form-button">Отправить</button>

@@ -29,7 +29,7 @@
         margin-right: 5px
 
 .form-disclaimer
-    margin: 30px 0;
+    margin: 30px 0
     line-height: 18px
 
 button[disabled]
@@ -41,3 +41,11 @@ button:enabled
 @media (max-width: 991px)
     .form-input
         margin-bottom: 16px
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0;
+
+input[type=number] 
+    -moz-appearance: textfield

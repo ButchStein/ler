@@ -6,10 +6,10 @@
                 <input v-model="params.name" name="name" type="text" class="form-input" placeholder="Имя" required/>
             </div>
             <div class="col-md-4">
-                <input v-model="params.email" name="email" type="text" class="form-input" placeholder="Email" required/>
+                <input v-model="params.email" name="email" type="email" class="form-input" placeholder="Email" required/>
             </div>
             <div class="col-md-4">
-                <input v-model="params.phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
+                <input v-mask="'+7 (999) 999-99-99'" v-model="params.phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
             </div>
         </div>
 

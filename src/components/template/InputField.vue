@@ -2,7 +2,7 @@
     <label class="input-component">
         <div class="input-component__title">{{ title }}</div>
         <div class="input-component__field">
-            <input type="text" :value="value" @input="$emit('input', $event.target.value)" placeholder="0" :required="required"/>
+            <input type="number" :value="value" @input="$emit('input', $event.target.value)" placeholder="0" :required="required"/>
             <div class="input-component__field-metric">{{ metric }}</div>
         </div>
     </label>
@@ -39,12 +39,14 @@ export default {
     input
         color: #4A4A4A
         font-size: 15px
-        line-height: 1
-        padding: 17px;
+        padding-left: 10px;
+        padding-right: 10px;
         border: 0
         background: transparent
         width: 55px
         text-align: center
+        height: 52px;
+        line-height: 52px;
 
 .input-component__field-metric
     padding: 17px 17px 17px 0;

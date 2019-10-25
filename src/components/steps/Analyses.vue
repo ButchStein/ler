@@ -4,8 +4,8 @@
             <step title="Введите данные анализа воды" showback="true" alignleft="true">
                 <template v-slot:body>
                     <form @submit.prevent="submitAnalyses()">
-                        <input-field title="Общая жёсткость" metric="мг-экв/л" v-model="analyses.hardness" required/>
-                        <input-field title="Общее железо" metric="мг/л" v-model="analyses.fe" required/>
+                        <input-field title="Общая жёсткость" metric="мг-экв/л" v-model.number="analyses.hardness" required/>
+                        <input-field title="Общее железо" metric="мг/л" v-model.number="analyses.fe" required/>
                         <button type="button" class="collapse__title" :class="{active: showAll}" @click="showAll = !showAll">
                             <div>Дополнительные показатели</div>
                             <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,13 +13,13 @@
                             </svg>    
                         </button>
                         <div class="collapse__body" v-if="showAll">
-                            <input-field title="Нитраты" metric="мг/л" v-model="analyses.nitrati"/>
-                            <input-field title="Нитриты" metric="мг/л" v-model="analyses.nitrite"/>
-                            <input-field title="Водородный показатель (pH)" metric="ед. pH" v-model="analyses.ph"/>
-                            <input-field title="Общее солесодержание (TDS)" metric="мг/л" v-model="analyses.tds"/>
-                            <input-field title="Перманганатная окисляемость" metric="мг О2/л" v-model="analyses.oxidizability"/>
-                            <input-field title="Цветность" metric="град." v-model="analyses.coloration"/>
-                            <input-field title="Мутность" metric="ЕМФ" v-model="analyses.turbidity"/>
+                            <input-field title="Нитраты" metric="мг/л" v-model.number="analyses.nitrati"/>
+                            <input-field title="Нитриты" metric="мг/л" v-model.number="analyses.nitrite"/>
+                            <input-field title="Водородный показатель (pH)" metric="ед. pH" v-model.number="analyses.ph"/>
+                            <input-field title="Общее солесодержание (TDS)" metric="мг/л" v-model.number="analyses.tds"/>
+                            <input-field title="Перманганатная окисляемость" metric="мг О2/л" v-model.number="analyses.oxidizability"/>
+                            <input-field title="Цветность" metric="град." v-model.number="analyses.coloration"/>
+                            <input-field title="Мутность" metric="ЕМФ" v-model.number="analyses.turbidity"/>
                         </div>
                         <button type="submit" class='button button-primary analyses-submit'>Подобрать решение</button>
                     </form>
