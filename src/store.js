@@ -200,7 +200,7 @@ export default new Vuex.Store({
           // если пользователь не заполнял анализы
           // проверяем чекбоксы
           if(j == 0) {
-            match = ( filter.fe == products[i].filter_iron ) || (filter.hardness == products[i].filter_stiffness)
+            match = ( filter.fe == products[i].filter_iron ) && (filter.hardness == products[i].filter_stiffness)
           }
         }
 
