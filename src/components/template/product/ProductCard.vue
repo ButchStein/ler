@@ -155,6 +155,7 @@ export default {
 .product__brief-warning {
   color: #000;
   line-height: 1.5;
+  margin-bottom: 12px;
 }
 .product__brief-warning:before {
   width: 17px;
@@ -175,6 +176,7 @@ export default {
 }
 
 .product__preview-pic {
+  overflow: hidden;
   width: 274px;
   height: 274px;
   border: 12px solid transparent;
