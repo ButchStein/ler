@@ -150,6 +150,7 @@ export default {
 
         &-inner {
             display: flex;
+            flex-grow: 1;
         }
     }
 }

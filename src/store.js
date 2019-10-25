@@ -170,7 +170,7 @@ export default new Vuex.Store({
         // количествео человек
         if(filter.categories < 3) { // для дома и дачи
           if(
-              (products[i].is_home_count_p === "Оба ваианта") 
+              (products[i].is_home_count_p === "both") 
               || 
               (products[i].is_home_count_p === filter.is_home_count_p)
             ) {
@@ -200,7 +200,7 @@ export default new Vuex.Store({
           // если пользователь не заполнял анализы
           // проверяем чекбоксы
           if(j == 0) {
-            match = ( filter.fe == products[i].filter_iron ) && (filter.hardness == products[i].filter_stiffness)
+            match = ( filter.fe == products[i].filter_iron ) || (filter.hardness == products[i].filter_stiffness)
           }
         }
 
