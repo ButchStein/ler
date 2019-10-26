@@ -106,7 +106,7 @@ export default {
     background-position: 50% 50%;
     transition: all .25s ease-in;
     width: 364px; 
-    
+
     img {
         max-width: 100%;
         height: auto;
@@ -129,7 +129,7 @@ export default {
         border-radius: 100%;
         z-index: 200;
         cursor: pointer;
-        transition: opacity .1s;
+        transition: opacity .1s, transform .25s;
     }
 
     &.active {
@@ -138,8 +138,10 @@ export default {
         }
         .map__point {
             opacity: 0;
+            
             &:hover, &.active {
                 opacity: 1;
+                transform: scale(2,2);
             }
         }
     }
