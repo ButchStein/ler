@@ -2,7 +2,7 @@
 <div>
     <div class="container">
         <div class="row">
-            <div class="col-xl-8  col-lg-9  col-md-12">
+            <div class="col-xl-8  col-lg-7  col-md-12">
                 <step title="Ваше индивидуальное решение" showback="true" alignleft="true">
                     <template v-slot:desc>
                         <p>Воспользуйтесь рекомендуемыми комплектациями либо выберите решения из списка.</p>
@@ -23,7 +23,7 @@
                     </template>
                 </step>
             </div>
-            <div class="col-4" style="padding-top: 200px; padding-bottom: 130px;">
+            <div class="rightcol col-xl-4 col-lg-5">
                 <map-of-flat/>
             </div>
         </div>
@@ -120,8 +120,20 @@ export default {
 .cards-komlects {
     margin-bottom: 36px;
     flex-wrap: nowrap;
+    align-items: stretch;
 }
 
+@media (max-width: 992px) {
+    .rightcol {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .rightcol {
+        padding-top: 200px; padding-bottom: 130px;
+    } 
+}
 @media (max-width: 767px) {
     .cards-komlects {
         overflow-x: auto;

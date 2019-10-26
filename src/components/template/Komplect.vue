@@ -1,9 +1,9 @@
 <template>
-<div class="komplect">
+<div class="komplect" v-if="items.length">
     <input type="radio" name="komplect" style="display:none;" :id="id" :checked="checked"/>
     <label class="komplect__label" :for="id" @click="change()">
         <header class="komplect__title">{{ komplect.name }}</header>
-        <div class="komplect__desc">{{ komplect.desc }}</div>
+        <div class="komplect__desc" v-if="komplect.desc">{{ komplect.desc }}</div>
         <footer class="komplect__footer">
             <div class="komplect__price price">{{ price }}</div>
             <div class="komplect__stars">
@@ -80,14 +80,16 @@ export default {
 
     &__label {
         cursor: pointer;
-        display: block;
+        display: flex;
+        flex-direction: column;
         background: #fff;
         border: 3px solid transparent;
         border-radius: 2px;
         padding: 14px 17px;
         position: relative;
         z-index: 2;
-        transition: box-shadow .25s, border .25s;
+        transition: box-shadow .25s, border .1s;
+        height: 100%;
 
         &::before {
             content: '';
@@ -132,6 +134,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: auto;
     }
 
     &__stars {

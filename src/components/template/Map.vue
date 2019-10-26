@@ -105,6 +105,7 @@ export default {
     background-size: 100% auto;
     background-position: 50% 50%;
     transition: all .25s ease-in;
+    width: 364px; 
     
     img {
         max-width: 100%;
