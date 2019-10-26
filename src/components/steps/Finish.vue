@@ -14,11 +14,11 @@
                             :komplect="komplect"
                             :items="calcKomplect(komplect.products)"/>
                         </div>
-                                
-                        <product-group 
-                        :group="group" 
-                        :items="filterByGroup(products, group.id)" 
-                        v-for="group in groups" 
+
+                        <product-group
+                        :group="group"
+                        :items="filterByGroup(products, group.id)"
+                        v-for="group in groups"
                         :key="group.id"/>
                     </template>
                 </step>
@@ -137,6 +137,8 @@ export default {
 @media (max-width: 767px) {
     .cards-komlects {
         overflow-x: auto;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
     }
 }
 

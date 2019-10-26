@@ -11,12 +11,14 @@
                     <a href="#" @click.prevent.self="$store.commit('show', item)">Подробнее</a>
                 </div>
             </div>
-            <div class="product-list__item-price">
-                <div class="price price-old" v-if="item.old_price">{{ item.old_price }}</div>
-                <div class="price">{{ item.price }}</div>
+            <div class="product-list__control">
+                <div class="product-list__item-price">
+                    <div class="price price-old" v-if="item.old_price">{{ item.old_price }}</div>
+                    <div class="price">{{ item.price }}</div>
+                </div>
+                <div class="product-list__item-button" v-if="checked">Убрать</div>
+                <div class="product-list__item-button" v-else>Выбрать</div>
             </div>
-            <div class="product-list__item-button" v-if="checked">Убрать</div>
-            <div class="product-list__item-button" v-else>Выбрать</div>
         </div>
     </div>
 </template>
@@ -184,6 +186,7 @@ export default {
     &__control {
         display: flex;
         flex-wrap: nowrap;
+        align-items: center;
     }
 
     &__item {
