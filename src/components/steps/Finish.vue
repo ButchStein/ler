@@ -23,8 +23,8 @@
                     </template>
                 </step>
             </div>
-            <div class="col-4">
-
+            <div class="col-4" style="padding-top: 200px; padding-bottom: 130px;">
+                <map-of-flat/>
             </div>
         </div>
     </div>
@@ -59,6 +59,7 @@ import CartSummary from '../template/CartSummary'
 import ConsultForm from '../template/ConsultForm'
 import SupportPhone from '../template/SupportPhone'
 import Modal from '../template/Modal'
+import MapOfFlat from '../template/Map'
 
 export default {
     components: {
@@ -69,7 +70,8 @@ export default {
         ConsultForm,
         SupportPhone,
         Modal,
-        ProductCard
+        ProductCard,
+        MapOfFlat
     },
     computed: {
         groups() {

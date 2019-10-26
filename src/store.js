@@ -10,6 +10,8 @@ export default new Vuex.Store({
   state: {
     komplect: 2,
     product: null,
+    productHover: '',
+    mapPoint: null,
     categories: [],
     groups: [],
     products: [],
@@ -123,6 +125,12 @@ export default new Vuex.Store({
     },
     resetKomplect(state) {
       state.komplect = null
+    },
+    productHover(state, product) {
+      state.productHover = product
+    },
+    mapPoint(state, point) {
+      state.mapPoint = point
     }
   },
   actions: {
@@ -272,6 +280,17 @@ export default new Vuex.Store({
     },
     analyses({filter}) {
       return filter.analyses
+    },
+    filter({filter}) {
+      return function(value) {
+        return filter[value];
+      }
+    },
+    productHover({productHover}) {
+      return productHover;
+    },
+    mapPoint(state) {
+      return state.mapPoint
     }
   }
 })

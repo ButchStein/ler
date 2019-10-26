@@ -1,5 +1,5 @@
 <template>
-    <div class="product-list__item">
+    <div class="product-list__item" @mouseenter="hover()" @mouseleave="blur()">
         <div class="product-list__item-label" @click="change()" :class="{checked: checked}">
             <div class="product-list__item-inner">
                 <div class="product-list__item-img" :style="{'border-color': item.color}">
@@ -37,6 +37,14 @@ export default {
             let action = (!this.checked) ? 'cartAddItem': 'cartRemoveItem'
             this.$store.commit(action, this.item)
             this.$store.commit('resetKomplect')
+        },
+        hover() {
+            this.$store.commit('productHover', this.item.name);
+            this.$store.commit('mapPoint', this.item.analyses.nickel.min);
+        },
+        blur() {
+            this.$store.commit('productHover', '');
+            this.$store.commit('mapPoint', null);
         }
     }
 }
