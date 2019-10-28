@@ -217,7 +217,7 @@ export default {
   }
 
   .cart-summary.fixed {
-
+    padding: 0;
 
     .cart-summary__products {
       display: none;
