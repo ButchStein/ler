@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss">
 .card {
-  height: 100%;
+  
   position: relative;
   z-index: 2;
   background: #FFFFFF;
@@ -40,6 +40,10 @@ export default {
   border: 1px solid rgba(210, 211, 211, 0.5);
   border-radius: 6px;
   transition: box-shadow 0.25s;
+
+  @media (min-width: 992px) {
+    height: 100%;
+  }
 
   + .card {
     margin-left: 15px;

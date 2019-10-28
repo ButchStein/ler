@@ -64,7 +64,8 @@ export default {
 .cards
     display: flex
     flex-wrap: wrap
-    align-items: stretch
+    @media (min-width: 768px) 
+        align-items: stretch
 .cards-center
     justify-content: center
 .cards-left

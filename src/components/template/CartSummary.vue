@@ -129,6 +129,8 @@ export default {
 }
 .cart-summary__total-amount {
   margin-bottom: 36px;
+  display: flex;
+  align-items: flex-end;
 }
 .cart-summary__total-item {
   margin-bottom: 17px;
@@ -146,9 +148,9 @@ export default {
   max-width: 70%;
 }
 .cart-summary__total-amount-items, .cart-summary__total-item-name, .cart-summary__total-amount-price, .cart-summary__total-item-price {
-  @media(min-width: 767px) { background-color: #fff; }
   z-index: 2;
   position: relative;
+  background-color: #fff;
 }
 
 .cart-summary__total-item-name, .cart-summary__total-amount-items {

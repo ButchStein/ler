@@ -214,10 +214,11 @@ export default {
   align-items: center;
   margin-top: auto;
   width: 100%;
+  .product-list__item-button {
+    margin-left: auto;
+  }
 }
-.product-list__item-button {
-  margin-left: auto;
-}
+
 .product__preview-pic {
   overflow: hidden;
   width: 274px;
@@ -295,7 +296,13 @@ export default {
         flex-grow: 1;
         max-width: 100%;
     }
-    
+    .product-list__item-desc {
+      margin-bottom: 0;
+    }
+    .product-list__item-info a {
+          padding: 10px 0;
+          display: inline-block;
+    }
     .product--variants {
 
         .product__variants {
