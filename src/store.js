@@ -198,7 +198,7 @@ export default new Vuex.Store({
       return categories
     },
     packages({packages}) {
-      return packages
+      return packages.sort(function(a,b) { return a.rating - b.rating })
     },
     products({products, filter}) {
       let result = [];
@@ -240,11 +240,13 @@ export default new Vuex.Store({
           // если пользователь не заполнял анализы
           // проверяем чекбоксы
           if(j == 0) {
-            match = ( filter.fe == products[i].filter_iron ) && (filter.hardness == products[i].filter_stiffness)
+            match = (filter.fe == products[i].filter_iron ) 
+                      || 
+                    (filter.hardness == products[i].filter_stiffness)
+                      &&
+                    (filter.fe && filter.hardness == products[i].filter_iron_stiffness)
           }
         }
-
-        
 
         if(match) {
           result.push(products[i])

@@ -42,7 +42,7 @@ export default {
         },
         hover() {
             this.$store.commit('productHover', this.item.name);
-            this.$store.commit('mapPoint', this.item.analyses.nickel.min);
+            this.$store.commit('mapPoint', this.item.point_on_diagram);
         },
         blur() {
             this.$store.commit('productHover', '');
