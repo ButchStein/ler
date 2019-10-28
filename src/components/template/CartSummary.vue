@@ -4,6 +4,7 @@
             <div class="row">
                 <div class="cart-summary__total col-sm-4">
                     <!--<div class="cart-summary__total-discount">Скидка за комплект 5%</div>-->
+                    <div class="cart-summary__total-discount">&nbsp;</div>
                     <div class="cart-summary__total-amount">
                         <div class="cart-summary__total-amount-items">Всего ({{cartTotal}} шт.)</div>
                         <div class="cart-summary__total-amount-price">
@@ -131,20 +132,25 @@ export default {
 }
 .cart-summary__total-item {
   margin-bottom: 17px;
+  display: flex;
+  align-items: flex-end;
 }
 .cart-summary__total-amount-price, .cart-summary__total-item-price {
-  float: right;
+  margin-left: auto;
 }
 .cart-summary__total-amount-items, .cart-summary__total-item-name {
-  display: inline-block;
+  display: inline;
+  flex-shrink: 1;
   padding-bottom: 2px;
   vertical-align: bottom;
+  max-width: 70%;
 }
 .cart-summary__total-amount-items, .cart-summary__total-item-name, .cart-summary__total-amount-price, .cart-summary__total-item-price {
-  background-color: #fff;
+  @media(min-width: 767px) { background-color: #fff; }
   z-index: 2;
   position: relative;
 }
+
 .cart-summary__total-item-name, .cart-summary__total-amount-items {
   padding-right: 10px;
 }

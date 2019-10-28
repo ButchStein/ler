@@ -1,12 +1,12 @@
 <template>
     <div class="product" :class="(product.subtitutes.length) && 'product--variants'">
-        <div class="product__variants" v-if="product.subtitutes.length">
-            <div style="margin-bottom:26px">Все варианты</div>
+        <div class="product__variants" v-if="product.subtitutes.length" :class="{showOnMobile: showSubstitudes}">
+            <div style="margin-bottom:26px">Все варианты:<div class="product__variants-close" @click="showSubstitudes = false"></div></div>
             <div class="product__variants__item"
             v-for="item in subtitutes"
             :key="item.id"
-            :class="{active: item.id == product.id }"
-            @click="$store.commit('show', item)"
+            :class="{active: item.id === product.id }"
+            @click="change(item)"
             >
                 <div>
                     <div class="product__variants__item-name">{{ item.name }}</div>
@@ -24,9 +24,19 @@
                     <div class="product__brief-title">{{product.name}}</div>
                     <div class="product__brief-desc">{{product.short_desc}}</div>
                     <div class="product__brief-warning" v-if="product.additional_short_desc">{{product.additional_short_desc}}</div>
-                    <div class="product__brief-price price">{{product.price}}</div>
+                    
+                    <div class="product__brief-price-and-button">
+                      <div class="product__brief-price price">{{product.price}}</div>
+                      <button class="product-list__item-button product-list__item-button--detailed active" v-if="showButton"  @click="replace()">
+                          Заменить
+                      </button>
+                      <button class="product-list__item-button product-list__item-button--detailed active" v-else-if="!showButton && !inCart" @click="$store.commit('cartAddItem', product)">
+                          Выбрать
+                      </button>
+                      <button class="product-list__item-button product-list__item-button--detailed" v-else @click="$store.commit('cartRemoveItem', product)">Убрать</button>
+                    </div>
                     <div class="product__variants-mobile" v-if="product.subtitutes.length">
-                        <button class="button  button-secondary">Все варианты</button>
+                        <button class="button  button-secondary" @click="showSubstitudes = true" v-if="!showSubstitudes">Все варианты</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +75,9 @@ export default {
     props: ['product'],
     data() {
         return {
-            activeTab: true
+            activeTab: true,
+            replacerInCart: null,
+            showSubstitudes: false
         }
     },
     computed: {
@@ -78,7 +90,30 @@ export default {
                 return a.id - b.id
             });
             return result;
+        },
+        showButton() {
+          let subtitutes = this.subtitutes
+          for(let i in subtitutes) {
+            // показываем кнопку,если один из заменителей корзине
+            if(this.$store.getters.isInCart(subtitutes[i].id) && subtitutes[i].id !== this.product.id) {
+              this.replacerInCart = subtitutes[i].id
+              return true
+            }
+          }
+        },
+        inCart() {
+          return this.$store.getters.isInCart(this.product.id)
         }
+    },
+    methods: {
+      replace() {
+          this.$store.commit('replaceInCart', {replace: this.replacerInCart, item: this.product});
+          this.$store.commit('replaceInFiltered', {replace: this.replacerInCart, item: this.product});
+      },
+      change(item) {
+          this.$store.commit('show', item)
+          this.showSubstitudes = false
+      }
     }
 }
 </script>
@@ -171,11 +206,18 @@ export default {
 .product__brief-price {
   font-weight: 600;
   font-size: 30px;
-  line-height: 32px;
-  margin-top: auto;
+  line-height: 1;
   color: #000;
 }
-
+.product__brief-price-and-button {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  width: 100%;
+}
+.product-list__item-button {
+  margin-left: auto;
+}
 .product__preview-pic {
   overflow: hidden;
   width: 274px;
@@ -215,7 +257,11 @@ export default {
 .product__tabs-content p {
   margin: 0.5em 0;
 }
-
+.product__tabs-content {
+  .cart-summary__total-amount-price, .cart-summary__total-item-price {
+    font-weight: 600;
+  }
+}
 .product {
     text-align: left;
     max-width: 800px;
@@ -249,11 +295,34 @@ export default {
         flex-grow: 1;
         max-width: 100%;
     }
-
+    
     .product--variants {
 
         .product__variants {
             display: none;
+
+            &.showOnMobile {
+              display: block;
+              position: fixed;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              z-index: 200;
+              background-color: #fff;
+              width: 100%;
+              padding: 26px 15px 15px;
+              box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.25);
+              }
+
+              .product__variants-close {
+                  background: url(../../../assets/ic_cancel.svg) 50% 50% no-repeat;
+                  background-size: 10px 10px;
+                  width: 32px;
+                  height: 32px;
+                  float: right;
+                  margin-top: -10px;
+                }
+            }
 
             &-mobile {
                 display: block;
@@ -267,7 +336,6 @@ export default {
             }
         }
     }
-}
 
 @media (max-width: 767px) {
     .product {
@@ -288,7 +356,6 @@ export default {
                 }
             }
         }
-
         &__preview {
             flex-direction: column;
             margin-bottom: 30px;
@@ -303,5 +370,6 @@ export default {
             text-align: center;
         }
     }
+    
 }
 </style>

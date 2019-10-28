@@ -44,7 +44,8 @@ export default new Vuex.Store({
         turbidity: '',
         coloration: ''
       }
-    }
+    },
+    filteredProducts: []
   },
   mutations: {
     setPath(state, path) {
@@ -63,9 +64,6 @@ export default new Vuex.Store({
       }
 
       
-    },
-    finish(state) {
-      state.step = state.path.length-2
     },
     cartAddItem(state, item) {
       let chooseOne = state.chooseOneGroup;
@@ -131,77 +129,11 @@ export default new Vuex.Store({
     },
     mapPoint(state, point) {
       state.mapPoint = point
-    }
-  },
-  actions: {
-    loadCategories({commit}) {
-      return new Promise(function(resolve, reject) {
-        axios.get(api_url + 'categories').then( function(resp) {
-          commit('setCategories', resp.data)
-          resolve(resp)
-        }).catch(function(err) {
-          reject(err)
-        })
-      })
     },
-    loadGroups({commit}) {
-      return new Promise(function(resolve, reject) {
-        axios.get(api_url + 'groups').then( function(resp) {
-          commit('setGroups', resp.data)
-          resolve(resp)
-        }).catch(function(err) {
-          reject(err)
-        })
-      })
-    },
-    loadProducts({commit}) {
-      return new Promise(function(resolve, reject) {
-        axios.get(api_url + 'products').then( function(resp) {
-          commit('setProducts', resp.data)
-          resolve(resp)
-        }).catch(function(err) {
-          reject(err)
-        })
-      })
-    },
-    loadPackages({commit}) {
-      return new Promise(function(resolve, reject) {
-        axios.get(api_url + 'packages').then( function(resp) {
-          commit('setPackages', resp.data)
-          resolve(resp)
-        }).catch(function(err) {
-          reject(err)
-        })
-      })
-    },
-  },
-  getters: {
-    komplectId({komplect}) {
-      return komplect
-    },
-    chooseOneGroup(state) {
-      return state.chooseOneGroup
-    },
-    path(state) {
-      return state.path
-    },
-    currentStep(state) {
-      return state.path[state.step]
-    },
-    step(state) {
-      return state.step
-    },
-    cart(state) {
-      return state.cart
-    },
-    categories({categories}) {
-      return categories
-    },
-    packages({packages}) {
-      return packages.sort(function(a,b) { return a.rating - b.rating })
-    },
-    products({products, filter}) {
-      let result = [];
+    finish(state) {
+      let result = []
+      let { products, filter, path } = state
+      
       for(let i = 0; i < products.length; i++) {
         let match = false
         // квартира, дача, дома
@@ -265,7 +197,98 @@ export default new Vuex.Store({
         }
 
       }
-      return result;
+
+      state.filteredProducts = result
+      state.step = path.length-2
+    },
+    replaceInFiltered(state, data) {
+      for(let i in state.filteredProducts) {
+        if(state.filteredProducts[i].id === data.replace) {
+          state.filteredProducts.splice(i,1)
+          state.filteredProducts.push(data.item)
+          break;
+        }
+      }
+    },
+    replaceInCart(state, data) {
+      for(let i in state.cart) {
+        if(state.cart[i].id === data.replace) {
+          state.cart.splice(i,1)
+          state.cart.push(data.item)
+          break;
+        }
+      }
+    }
+  },
+  actions: {
+    loadCategories({commit}) {
+      return new Promise(function(resolve, reject) {
+        axios.get(api_url + 'categories').then( function(resp) {
+          commit('setCategories', resp.data)
+          resolve(resp)
+        }).catch(function(err) {
+          reject(err)
+        })
+      })
+    },
+    loadGroups({commit}) {
+      return new Promise(function(resolve, reject) {
+        axios.get(api_url + 'groups').then( function(resp) {
+          commit('setGroups', resp.data)
+          resolve(resp)
+        }).catch(function(err) {
+          reject(err)
+        })
+      })
+    },
+    loadProducts({commit}) {
+      return new Promise(function(resolve, reject) {
+        axios.get(api_url + 'products').then( function(resp) {
+          commit('setProducts', resp.data)
+          resolve(resp)
+        }).catch(function(err) {
+          reject(err)
+        })
+      })
+    },
+    loadPackages({commit}) {
+      return new Promise(function(resolve, reject) {
+        axios.get(api_url + 'packages').then( function(resp) {
+          commit('setPackages', resp.data)
+          resolve(resp)
+        }).catch(function(err) {
+          reject(err)
+        })
+      })
+    }
+  },
+  getters: {
+    komplectId({komplect}) {
+      return komplect
+    },
+    chooseOneGroup(state) {
+      return state.chooseOneGroup
+    },
+    path(state) {
+      return state.path
+    },
+    currentStep(state) {
+      return state.path[state.step]
+    },
+    step(state) {
+      return state.step
+    },
+    cart(state) {
+      return state.cart
+    },
+    categories({categories}) {
+      return categories
+    },
+    packages({packages}) {
+      return packages.sort(function(a,b) { return a.rating - b.rating })
+    },
+    products({filteredProducts}) {
+      return filteredProducts
     },
     groups({groups}) {
       return groups.sort(function(a, b) { return a.order - b.order})
@@ -303,6 +326,14 @@ export default new Vuex.Store({
     },
     mapPoint(state) {
       return state.mapPoint
+    },
+    isInCart({cart}) {
+      return function(productId) {
+        for(let i in cart) {
+          if (cart[i].id == productId) return true
+        }
+        return false;
+      }
     }
   }
 })

@@ -16,7 +16,7 @@
                     <div class="price price-old" v-if="item.old_price">{{ item.old_price }}</div>
                     <div class="price">{{ item.price }}</div>
                 </div>
-                <button class="product-list__item-button" :class="{active: !checked}"  @click="change()">
+                <button class="product-list__item-button" :class="{active: !checked}" @click.stop="change()">
                     <span v-if="checked">Убрать</span>
                     <span v-else>Выбрать</span>
                 </button>
@@ -157,46 +157,53 @@ export default {
   line-height: 44px;
   padding-top: 2px;
   padding-left: 16px;
-  background: #24BBF6;
   border-radius: 2px;
   position: relative;
-  color: #fff;
   cursor: pointer;
   margin-left: 24px;
   flex-shrink: 0;
   text-align: left;
+  background: rgba(36, 187, 246, 0.15);
+  color: #24BBF6;
 
   &:hover {
       background: rgba(36, 187, 246, 0.25);
   }
+  &:after {
+      content: " ";
+        top: 0;
+        right: 0;
+        width: 38px;
+        height: 100%;
+        position: absolute;
+      background: url(../../../assets/ic_cancel.svg) 50% 50% no-repeat;
+      background-size: 10px 10px;
+  }
 
   &.active {
+      color: #fff;
+      background: #24BBF6;
       &:hover {
           background: #12AAED;
       }
   }
 }
-.product-list__item-button:after {
-  content: " ";
-  top: 0;
-  right: 0;
-  width: 38px;
-  height: 100%;
-  position: absolute;
+
+.product-list__item-button.active:after {
   background: url(../../../assets/ic_plus.svg) 50% 50% no-repeat;
-  background-size: 10px 10px;
+  
 }
 
 .product-list__item-label.checked {
   border: 4px solid #24BBF6;
 }
-.product-list__item-label.checked .product-list__item-button {
-  background: rgba(36, 187, 246, 0.15);
-  color: #24BBF6;
-}
-.product-list__item-label.checked .product-list__item-button:after {
-  background: url(../../../assets/ic_cancel.svg) 50% 50% no-repeat;
-}
+// .product-list__item-label.checked .product-list__item-button {
+//   background: rgba(36, 187, 246, 0.15);
+//   color: #24BBF6;
+// }
+// .product-list__item-label.checked .product-list__item-button:after {
+//   background: url(../../../assets/ic_cancel.svg) 50% 50% no-repeat;
+// }
 
 .product-list {
 
