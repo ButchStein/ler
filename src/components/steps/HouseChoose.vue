@@ -2,10 +2,10 @@
 <div class="container">
     <step title="Подбор индивидуального комплексного решения для вас">
         <template v-slot:body>
-            <div class="row">
+            <div class="row cards">
                 <div class="col-lg-4  col-md-8  offset-md-2  offset-lg-0">
                     <card @click="choosePath('flat')" title="В квартиру" 
-                    desc="Решения для квартир в домах с несколькими этажами." actiontext="Начать">
+                    desc="Решения для многоквартирных домов." actiontext="Начать">
                         <img src="../../assets/flat.png"/>
                     </card>
                 </div>
@@ -64,6 +64,7 @@ export default {
 .cards
     display: flex
     flex-wrap: wrap
+    align-items: stretch
 .cards-center
     justify-content: center
 .cards-left

@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss">
 .card {
+  height: 100%;
   position: relative;
   z-index: 2;
   background: #FFFFFF;
@@ -74,12 +75,13 @@ export default {
   font-size: 15px;
   line-height: 20px;
   color: #666;
+  min-height: 2.66em;
 }
 
 .card__action-text {
   color: #24BBF6;
   text-transform: uppercase;
-  margin-top: 32px;
+  margin-top: 32px
 }
 
 @media (max-width: 991px) {

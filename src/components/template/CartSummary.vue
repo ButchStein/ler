@@ -3,11 +3,11 @@
         <div class="container">
             <div class="row">
                 <div class="cart-summary__total col-sm-4">
-                    <div class="cart-summary__total-discount">Скидка за комплект 5%</div>
+                    <!--<div class="cart-summary__total-discount">Скидка за комплект 5%</div>-->
                     <div class="cart-summary__total-amount">
                         <div class="cart-summary__total-amount-items">Всего ({{cartTotal}} шт.)</div>
                         <div class="cart-summary__total-amount-price">
-                            <span class="price-old price">{{cartPrice}}</span>
+                            <!--<span class="price-old price">{{cartPrice}}</span>-->
                             <span class="price">{{cartPrice}}</span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="cart-summary__actions col-sm-3">
-                    <action-button @click="$store.commit('nextStep')" title="Отправить" primary="true" :restyle="{display: 'block', width: '100%', marginBottom: (!sticky)?'64px':'0px'}"/>
+                    <action-button @click="$store.commit('nextStep')" title="Заказать" primary="true" :restyle="{display: 'block', width: '100%', marginBottom: (!sticky)?'64px':'0px'}"/>
                     <start-again-btn v-if="!sticky"/>
                 </div>
             </div>

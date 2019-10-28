@@ -4,7 +4,7 @@
         <template v-slot:body>
             <div class="row">
                 <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
-                    <card title="1-3 человека" desc="Потребление до 1,5 куб м/ч" @click="setPeople('3')">
+                    <card title="1-3 человека" desc="Потребление до 1,5 куб. м/ч" @click="setPeople('3')">
                         <img src="../../assets/3p.png"/>
                     </card>
                 </div>

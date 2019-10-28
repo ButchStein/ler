@@ -1,6 +1,6 @@
 <template>
-    <div class="product-list__item" @mouseenter="hover()" @mouseleave="blur()">
-        <div class="product-list__item-label" @click="change()" :class="{checked: checked}">
+    <div class="product-list__item" @mouseenter="hover()" @mouseleave="blur()" @click="change()">
+        <div class="product-list__item-label" :class="{checked: checked}">
             <div class="product-list__item-inner">
                 <div class="product-list__item-img" :style="{'border-color': item.color}">
                     <img :src="item.photo"/>
@@ -8,16 +8,18 @@
                 <div class="product-list__item-info">
                     <div class="product-list__item-title">{{item.name}}</div>
                     <div class="product-list__item-desc">{{item.short_desc}}</div>
-                    <a href="#" @click.prevent.self="$store.commit('show', item)">Подробнее</a>
+                    <a href="#" @click.stop.prevent="show()">Подробнее</a>
                 </div>
             </div>
             <div class="product-list__control">
-                <div class="product-list__item-price">
+                <div class="product-list__item-price" >
                     <div class="price price-old" v-if="item.old_price">{{ item.old_price }}</div>
                     <div class="price">{{ item.price }}</div>
                 </div>
-                <div class="product-list__item-button" v-if="checked">Убрать</div>
-                <div class="product-list__item-button" v-else>Выбрать</div>
+                <button class="product-list__item-button" :class="{active: !checked}"  @click="change()">
+                    <span v-if="checked">Убрать</span>
+                    <span v-else>Выбрать</span>
+                </button>
             </div>
         </div>
     </div>
@@ -35,6 +37,9 @@ export default {
         }
     },
     methods: {
+        show() {
+            this.$store.commit('show', this.item)
+        },
         change() {
             let action = (!this.checked) ? 'cartAddItem': 'cartRemoveItem'
             this.$store.commit(action, this.item)
@@ -113,6 +118,7 @@ export default {
 .product-list__item-info {
   flex-grow: 1;
   margin: 0 20px;
+  position: relative;
 }
 .product-list__item-title {
   font-size: 20px;
@@ -143,13 +149,13 @@ export default {
 .product-list__item-button {
   min-width: 120px;
   max-width: 120px;
-  display: inline-block;
+  display: block;
   border: 0;
   font-size: 15px;
   font-weight: 600;
   height: 45px;
   line-height: 44px;
-  padding-top: 1px;
+  padding-top: 2px;
   padding-left: 16px;
   background: #24BBF6;
   border-radius: 2px;
@@ -158,6 +164,17 @@ export default {
   cursor: pointer;
   margin-left: 24px;
   flex-shrink: 0;
+  text-align: left;
+
+  &:hover {
+      background: rgba(36, 187, 246, 0.25);
+  }
+
+  &.active {
+      &:hover {
+          background: #12AAED;
+      }
+  }
 }
 .product-list__item-button:after {
   content: " ";

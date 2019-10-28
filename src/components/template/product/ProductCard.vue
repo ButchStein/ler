@@ -123,6 +123,7 @@ export default {
   height: 28px;
   display: block;
   float: left;
+  flex-shrink: 0;
 }
 .product__variants__item.active:before {
   background: url("../../../assets/active.svg") 0 0 no-repeat;
