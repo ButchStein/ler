@@ -243,10 +243,16 @@ export default new Vuex.Store({
             // если стоят обе галки
             if(filter.fe && filter.hardness === true) {
               match = filter.fe && filter.hardness == products[i].filter_iron_stiffness
-
             // иначе, если стоит 1 из галок
             } else {
-              match = (filter.fe == products[i].filter_iron ) && (filter.hardness == products[i].filter_stiffness)
+              // у продукта все 3 галки, алгоритм ИЛИ
+              if(products[i].filter_iron && products[i].filter_stiffness && products[i].filter_iron_stiffness) {
+                match = (filter.fe == products[i].filter_iron ) || (filter.hardness == products[i].filter_stiffness)
+                // одна из галок не стоит - алгоритм И
+              } else {
+                match = (filter.fe == products[i].filter_iron ) && (filter.hardness == products[i].filter_stiffness)
+              }
+              
             }
 
           }
