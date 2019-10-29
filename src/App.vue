@@ -1,7 +1,9 @@
 <template>
   <main id="app">
     <app-header/>
-    <component :is="current"/>
+    <transition name="fade">
+      <component :is="current"/>
+    </transition>
   </main>
 </template>
 

@@ -110,13 +110,24 @@ export default {
 </script>
 
 <style lang="scss">
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .25s;
+.fade-leave-active {
+  transition: opacity .25s ease;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-  opacity: 0;
+.fade-leave {
+    opacity: 1;
 }
-
+.fade-leave-to {
+    opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity .25s ease-out;
+}
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-to {
+    opacity: 1;
+}
 .cards-komlects {
     margin-bottom: 36px;
     flex-wrap: nowrap;
