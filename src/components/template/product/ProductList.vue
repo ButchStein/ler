@@ -59,7 +59,7 @@ export default {
 
 <style lang="scss">
 .product-list__item {
-  margin-bottom: 12px;
+  padding-bottom: 12px;
 }
 
 .product-list__item-img {

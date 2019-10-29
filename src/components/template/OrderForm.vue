@@ -35,15 +35,10 @@
 
             </div>
         </div>
-
-
         <div class="form-disclaimer">
-            <input type="checkbox" :id="id" v-model="checked"/>
-            <label :for="id">
-                Отправляя сообщение, я даю согласие на обработку персональных данных и получение уведомлений от АО «БВТ БАРЬЕР РУС».
-            </label>
+            <p>Факт отправки формы подтверждает ваше согласие на <a href="https://www.barrier.ru/policy/" target="_blank">передачу и обработку персональных данных</a>, а также получение информационных рассылок</p>
         </div>
-        <button type="submit" class="form-button" :disabled="!checked">Оформить заказ</button>
+        <button type="submit" class="form-button">Оформить заказ</button>
     </form>
 </template>
 
@@ -70,7 +65,7 @@ export default {
             let self = this
             this.$store.commit('thankyou')
             axios.post('http://guru.madex.pro/order/create', Object.assign({}, this.params, this.$store.getters.cartForOrder))
-            .then(function(resp){
+            .then(function(){
                 self.$store.commit('thankyou')
             })
             .catch(function(err){

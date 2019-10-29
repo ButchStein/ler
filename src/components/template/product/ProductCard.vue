@@ -76,7 +76,6 @@ export default {
     data() {
         return {
             activeTab: true,
-            replacerInCart: null,
             showSubstitudes: false
         }
     },
@@ -92,14 +91,19 @@ export default {
             return result;
         },
         showButton() {
+          return (this.replacerInCart !== null)
+        },
+        replacerInCart() {
           let subtitutes = this.subtitutes
+
           for(let i in subtitutes) {
             // показываем кнопку,если один из заменителей корзине
             if(this.$store.getters.isInCart(subtitutes[i].id) && subtitutes[i].id !== this.product.id) {
-              this.replacerInCart = subtitutes[i].id
-              return true
+              return subtitutes[i].id
             }
           }
+
+          return null
         },
         inCart() {
           return this.$store.getters.isInCart(this.product.id)
@@ -255,8 +259,16 @@ export default {
   line-height: 25px;
   color: #000000;
 }
-.product__tabs-content p {
+.product__tabs-content p, ul, li, ol {
   margin: 0.5em 0;
+}
+.product__tabs-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+.product__tabs-content ol {
+  list-style-type: decimal;
+  margin-left: 20px;
 }
 .product__tabs-content {
   .cart-summary__total-amount-price, .cart-summary__total-item-price {

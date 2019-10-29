@@ -5,14 +5,14 @@
             <div class="row">
                 <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
                     <card title="1-3 человека" desc="Потребление до 1,5 куб. м/ч" @click="setPeople('3')">
-                        <img src="../../assets/3p.png"/>
+                        <img src="../../assets/3p.png" srcset="../../assets/3p.png 2x"/>
                     </card>
                 </div>
 
 
                 <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
                     <card title="Более 3 человек" desc="Потребление от 1,5 куб. м/ч" @click="setPeople('3+')">
-                        <img src="../../assets/3pp.png"/>
+                        <img src="../../assets/3pp.png"  srcset="../../assets/3pp.png 2x"/>
                     </card>
                 </div>
             </div>

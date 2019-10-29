@@ -5,13 +5,13 @@
             <div class="row">
                 <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
                     <card title="Нет" desc="Вода ничем не пахнет" @click="$store.commit('nextStep')">
-                        <img src="../../assets/smell-no.png"/>
+                        <img src="../../assets/smell-no.png" srcset="../../assets/smell-no@2x.png 2x"/>
                     </card>
                 </div>
 
                 <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
                     <card title="Да" desc="Есть посторонний запах" @click="$store.commit('feedback')">
-                        <img src="../../assets/smell-yes.png"/>
+                        <img src="../../assets/smell-yes.png" srcset="../../assets/smell-no@2x.png 2x"/>
                     </card>
                 </div>
             </div>

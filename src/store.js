@@ -305,8 +305,12 @@ export default new Vuex.Store({
     products({filteredProducts}) {
       return filteredProducts
     },
-    groups({groups}) {
-      return groups.sort(function(a, b) { return a.order - b.order})
+    groups({groups, filter}) {
+      if(filter.categories < 3) {
+        return groups.sort(function(a, b) { return b.order - a.order})
+      } else {
+        return groups.sort(function(a, b) { return a.order - b.order})
+      }
     },
     cartPrice({cart}) {
       let price = 0;

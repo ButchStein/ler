@@ -3,9 +3,9 @@
         <div class="container">
             <div class="header__inner">
                 <picture>
-                    <source media="(min-width: 768px)" srcset="../../assets/logo.png">
-                    <source media="(max-width: 767px)" srcset="../../assets/logo-mobile.png 1x, ../../assets/logo-mobile@2x.png 2x">
-                    <img class="header__logo" src="../../assets/logo.png"/>
+                    <source media="(min-width: 768px)" srcset="../../assets/barrier.svg">
+                    <source media="(max-width: 767px)" srcset="../../assets/barrier-mobile.svg">
+                    <img class="header__logo" src="../../assets/barrier.svg"/>
                 </picture>
                 <div class="header__descriptor">Подбор комплексного решения для вашего дома</div>
                 <a href="tel:88001001007" class="header__phone">8 800 100-100-7</a>
@@ -33,6 +33,8 @@
 
     &__logo {
         margin-right: 20px;
+        width: 152px;
+        height: 32px;
     }
 
     &__descriptor {
@@ -72,6 +74,8 @@
 
         &__logo {
             margin: 0;
+            width: auto;
+            height: 36px;
         }
 
         &__inner {

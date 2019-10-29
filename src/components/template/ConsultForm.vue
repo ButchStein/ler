@@ -12,6 +12,9 @@
                 <button type="submit" class="form-button">Отправить</button>
             </div>
         </div>
+        <div class="form-disclaimer">
+            <p>Факт отправки формы подтверждает ваше согласие на <a href="https://www.barrier.ru/policy/" target="_blank">передачу и обработку персональных данных</a>, а также получение информационных рассылок</p>
+        </div>
     </form>
 
     <p v-if="sent">Ваша заявка отправлена. Мы скоро свяжемся с вами!</p>
@@ -36,7 +39,7 @@ export default {
     methods: {
         submit() {
             let self = this
-            axios.post('/feedback', this.params).then(
+            axios.post('http://guru.madex.pro/form/callback', this.params).then(
                 function() {
                     self.sent = true
                 }
