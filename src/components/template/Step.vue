@@ -3,7 +3,7 @@
         <header class="step__header">
             <a class="step__back" href="#" @click.prevent="goback()" v-if="showback">← Назад</a>
             <h1 class="step__header-title" :class="{ 'step__header-title-left': alignleft }">{{ title }}</h1>
-            <div class="step__header-description">
+            <div class="step__header-description" :class="{ 'step__header-description-left': alignleft }">
                 <slot name="desc"></slot>
             </div>
         </header>
@@ -61,6 +61,11 @@ export default {
     font-size: 20px;
     line-height: 1.3;
     color: #666;
+    text-align:center;
+
+    &-left {
+        text-align: left;
+    }
   }
 
   &__back {

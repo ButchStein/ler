@@ -22,7 +22,8 @@ export default new Vuex.Store({
       flat: ["HouseChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       house: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       dacha: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
-      feedback: ["Feedback"]
+      feedback: ["Feedback"],
+      thankyou: ["Thankyou"]
     },
     path: ["HouseChoose"],
     cart: [],
@@ -105,6 +106,10 @@ export default new Vuex.Store({
     },
     feedback(state) {
       state.path = state.paths.feedback
+      state.step = 0
+    },
+    thankyou(state) {
+      state.path = state.paths.thankyou
       state.step = 0
     },
     cartKomplect(state, komplect) {
@@ -280,6 +285,16 @@ export default new Vuex.Store({
     },
     cart(state) {
       return state.cart
+    },
+    cartForOrder({cart}) {
+      let result = []
+      for(let i in cart) {
+        result.push({
+          "id": cart[i].id,
+          "count": 1
+        })
+      }
+      return {"items": result}
     },
     categories({categories}) {
       return categories

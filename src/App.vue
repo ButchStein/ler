@@ -19,6 +19,7 @@ import Analyses from './components/steps/Analyses'
 import Finish from './components/steps/Finish'
 import Feedback from './components/steps/Feedback'
 import OrderForm from './components/steps/OrderForm'
+import Thankyou from './components/steps/Thankyou'
 
 export default {
   name: 'app',
@@ -31,7 +32,8 @@ export default {
     Analyses,
     Finish,
     Feedback,
-    OrderForm
+    OrderForm,
+    Thankyou
   },
   data() {
     return {
