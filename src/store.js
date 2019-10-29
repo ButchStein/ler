@@ -161,22 +161,27 @@ export default new Vuex.Store({
         if(products[i].is_depend_ch) { // не зависит
           match = true
         } else {
-          let j = 0;
+          let analyses_filled = false
+          
           for(let key in filter.analyses) {
             if(filter.analyses[key] !== '') { // если поле заполнено - матчим
+              
+              analyses_filled = true
+              
               if(filter.analyses[key] <= products[i].analyses[key].max && 
                  filter.analyses[key] >= products[i].analyses[key].min) {
                    match = true
                  } else {
                    match = false
+                   break;
                  }
-              j++;
+              
             }
           }
 
           // если пользователь не заполнял анализы
           // проверяем чекбоксы
-          if(j == 0) {
+          if(!analyses_filled) {
             // если стоят обе галки
             if(filter.fe && filter.hardness === true) {
               match = filter.fe && filter.hardness == products[i].filter_iron_stiffness

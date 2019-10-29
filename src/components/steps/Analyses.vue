@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         submitAnalyses() {
-            this.$store.commit('setFilter', { has_anlyses: true })
+            this.$store.commit('setFilter', { has_analyses: true })
             this.$store.commit('setFilter', { analyses: this.analyses })
 
             let self = this
