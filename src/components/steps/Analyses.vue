@@ -21,7 +21,9 @@
                             <input-field title="Цветность" metric="град." v-model.number="analyses.coloration"/>
                             <input-field title="Мутность" metric="ЕМФ" v-model.number="analyses.turbidity"/>
                         </div>
-                        <button type="submit" class='button button-primary analyses-submit'>Подобрать решение</button>
+                        <div :class="{preloader:preloader}">
+                            <button type="submit" class='button button-primary analyses-submit'>Подобрать решение</button>
+                        </div>
                     </form>
                 </template>
             </step>
@@ -47,13 +49,20 @@ export default {
         submitAnalyses() {
             this.$store.commit('setFilter', { has_anlyses: true })
             this.$store.commit('setFilter', { analyses: this.analyses })
-            this.$store.commit('finish')
+
+            self = this
+            this.preloader = true
+
+            setTimeout(function(){
+                self.$store.commit('finish')
+            }, 100)
         }
     },
     data() {
         return {
             showAll: false,
-            analyses: {...this.$store.getters.analyses}
+            analyses: {...this.$store.getters.analyses},
+            preloader: false
         }
     }
 }

@@ -15,8 +15,10 @@
                     </switcher>
                 </template>
                 <template v-slot:actions>
-                    <action-button title="У меня есть анализы воды" @click="$store.commit('nextStep')"/>
-                    <action-button title="Подобрать решение" primary="true" @click="$store.commit('finish')"/>
+                    <div :class="{preloader:preloader}">
+                        <action-button title="У меня есть анализы воды" @click="$store.commit('nextStep')"/>
+                        <action-button title="Подобрать решение" primary="true" @click="finish()"/>
+                    </div>
                 </template>
             </step>
         </div>
@@ -38,7 +40,8 @@ export default {
     data() {
         return {
             fe: false,
-            hardness: false
+            hardness: false,
+            preloader: false
         } 
     },
     methods: {
@@ -47,7 +50,26 @@ export default {
                 fe: this.fe,
                 hardness: this.hardness
             })
+        },
+        finish() {
+            self = this
+            this.preloader = true
+            setTimeout(function(){
+                self.$store.commit('finish')
+            }, 100)
         }
     }
 }
 </script>
+
+<style lang="scss">
+.preloader .button-primary:after {
+    display: inline-block;
+    content: ' ';
+    background: url('../../assets/loader.gif') 50% 50% no-repeat;
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+    vertical-align:middle;
+}
+</style>

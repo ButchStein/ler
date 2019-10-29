@@ -15,11 +15,12 @@ export default {
 
 <style lang="scss">
 .button {
+  height: 62px;
+  line-height: 62px;
   border-radius: 2px;
   font-weight: 600;
   font-size: 20px;
-  line-height: 20px;
-  padding: 19px 17px;
+  padding: 0 17px;
   text-transform: uppercase;
   cursor: pointer;
   border: 2px solid #24BBF6;
