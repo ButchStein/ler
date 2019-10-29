@@ -50,7 +50,7 @@ export default {
             this.$store.commit('setFilter', { has_anlyses: true })
             this.$store.commit('setFilter', { analyses: this.analyses })
 
-            self = this
+            let self = this
             this.preloader = true
 
             setTimeout(function(){

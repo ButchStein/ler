@@ -52,7 +52,7 @@ export default {
             })
         },
         finish() {
-            self = this
+            let self = this
             this.preloader = true
             setTimeout(function(){
                 self.$store.commit('finish')

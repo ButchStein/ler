@@ -111,8 +111,9 @@ export default {
     },
     methods: {
       replace() {
-          this.$store.commit('replaceInCart', {replace: this.replacerInCart, item: this.product});
-          this.$store.commit('replaceInFiltered', {replace: this.replacerInCart, item: this.product});
+          let replacer = this.replacerInCart
+          this.$store.commit('replaceInCart', {replace: replacer, item: this.product});
+          this.$store.commit('replaceInFiltered', {replace: replacer, item: this.product});
       },
       change(item) {
           this.$store.commit('show', item)
