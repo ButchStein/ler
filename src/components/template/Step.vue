@@ -39,6 +39,7 @@ export default {
 
   &__actions {
     margin-top: auto;
+    padding-top: 20px;
   }
 
   &__header {
@@ -100,7 +101,6 @@ export default {
 
         &__actions {
             display: flex;
-            margin-top: 20px;
 
             .button {
                 flex-grow: 1;
