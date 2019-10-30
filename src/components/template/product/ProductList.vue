@@ -3,7 +3,7 @@
         <div class="product-list__item-label" :class="{checked: checked}">
             <div class="product-list__item-inner">
                 <div class="product-list__item-img" :style="{'border-color': item.color}">
-                    <img :src="item.photo"/>
+                    <img :src="item.photo_250_250"/>
                 </div>
                 <div class="product-list__item-info">
                     <div class="product-list__item-title">{{item.name}}</div>

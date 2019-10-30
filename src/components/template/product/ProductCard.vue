@@ -12,13 +12,13 @@
                     <div class="product__variants__item-name">{{ item.name }}</div>
                     <div class="product__variants__item-warning">{{ item.additional_short_desc }}</div>
                 </div>
-                <img :src="item.photo" class="product__variants__item-img"/>
+                <img :src="item.photo_250_250" class="product__variants__item-img"/>
             </div>
         </div>
         <div class="product__info">
             <div class="product__preview">
                 <div class="product__preview-pic" :style="{borderColor: product.color}">
-                    <img :src="product.photo"/>
+                    <img :src="product.photo" :srcset="`${product.photo_250_250} 1x, ${product.photo_500_500} 2x`"/>
                 </div>
                 <div class="product__brief">
                     <div class="product__brief-title">{{product.name}}</div>
