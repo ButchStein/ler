@@ -1,5 +1,5 @@
 <template>
-    <div class="product-group">
+    <div class="product-group" :id="'product-group-'+group.id">
         <div class="product-group__title">{{ group.name }}</div>
         <div class="product-group__desc">{{ group.description }}</div>
         <div class="product-group__warning" v-if="chooseOne">Можно выбрать только один</div>

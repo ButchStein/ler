@@ -8,7 +8,7 @@
             {{ productName }}
         </div>
 
-        <div v-for="(point, index) in points" 
+        <a href="#" v-scroll-to="'#product-group-'+point.group" v-for="(point, index) in points" 
         class="map__point" 
         :style="{top: point.y, left: point.x}" :key="index" 
         @mouseenter="zoomIn(point)" 
@@ -53,19 +53,19 @@ export default {
         points() {
             if (this.isFlat) {
                 return [
-                    {id: 1, x: '50px',  y: '180px', bgx: '-50px', bgy: "-180px", name: "Фильтр под мойку"},
-                    {id: 2, x: '240px', y: '100px', bgx: '-250px', bgy: "-110px", name: "Магистральные фильтры"},
-                    {id: 3, x: '240px', y: '120px', bgx: '-250px', bgy: "-120px", name: "Магистральные фильтры"},
-                    {id: 4, x: '240px', y: '170px', bgx: '-250px', bgy: "-160px", name: "Фильтр для душа"},
-                    {id: 5, x: '290px', y: '160px', bgx: '-290px', bgy: "-160px", name: "Фильтр для бытовой техники" }
+                    {id: 1, x: '50px',  y: '180px', bgx: '-50px', bgy: "-180px", name: "Фильтр под мойку", group: 3},
+                    {id: 2, x: '240px', y: '100px', bgx: '-250px', bgy: "-110px", name: "Магистральные фильтры", group: 1},
+                    {id: 3, x: '240px', y: '120px', bgx: '-250px', bgy: "-120px", name: "Магистральные фильтры", group: 1},
+                    {id: 4, x: '240px', y: '170px', bgx: '-250px', bgy: "-160px", name: "Фильтр для душа", group: 2},
+                    {id: 5, x: '290px', y: '160px', bgx: '-290px', bgy: "-160px", name: "Фильтр для бытовой техники", group: 2}
                 ]
             }else{
                 return [
-                    {id: 1, x: '100px',  y: '230px', bgx: '-240px', bgy: "-460px", name: "Фильтр под мойку"},
-                    {id: 2, x: '175px', y: '265px', bgx: '-380px', bgy: "-560px", name: "Механический фильтр"},
-                    {id: 3, x: '200px', y: '253px', bgx: '-430px', bgy: "-520px", name: "Система для коттеджа"},
-                    {id: 4, x: '140px', y: '170px', bgx: '-270px', bgy: "-380px", name: "Фильтр для душа"},
-                    {id: 5, x: '200px', y: '145px', bgx: '-420px', bgy: "-320px", name: "Фильтр для бытовой техники"},   
+                    {id: 1, x: '100px',  y: '230px', bgx: '-240px', bgy: "-460px", name: "Фильтр под мойку", group: 3},
+                    {id: 2, x: '175px', y: '265px', bgx: '-380px', bgy: "-560px", name: "Механический фильтр", group: 1},
+                    {id: 3, x: '200px', y: '253px', bgx: '-430px', bgy: "-520px", name: "Система для коттеджа", group: 1},
+                    {id: 4, x: '140px', y: '170px', bgx: '-270px', bgy: "-380px", name: "Фильтр для душа", group: 2},
+                    {id: 5, x: '200px', y: '145px', bgx: '-420px', bgy: "-320px", name: "Фильтр для бытовой техники", group: 2},   
                 ]
             }
         },
@@ -121,6 +121,7 @@ export default {
     // }
 
     &__point {
+        display: block;
         position: absolute;
         width: 18px;
         height: 18px;

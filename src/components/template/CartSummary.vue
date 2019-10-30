@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="cart-summary__products col-sm-5">
-                    <div class="cart-summary__product" v-for="item in cart" :key="item.id" :style="{'border-color': item.color}">
+                    <div class="cart-summary__product" @click="$store.commit('show', item)" v-for="item in cart" :key="item.id" :style="{'border-color': item.color}">
                         <img :src="item.photo"/>
                     </div>
                 </div>
@@ -172,6 +172,7 @@ export default {
   overflow: hidden;
   border: 4px solid transparent;
   margin-right: 6px;
+  cursor: pointer;
 }
 .cart-summary__product img {
   max-width: 100%;
