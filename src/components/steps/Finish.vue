@@ -82,6 +82,9 @@ export default {
         },
         popup() {
             return this.$store.getters.product !== null
+        },
+        originalProducts() {
+            return this.$store.getters.originalProducts
         }
     },
     methods: {
@@ -98,9 +101,9 @@ export default {
         },
         calcKomplect(items) {
             let komplectItems = []
-            for(let key in this.products) {
-                if(items.indexOf(this.products[key].id) >= 0) {
-                    komplectItems.push(this.products[key])
+            for(let key in this.originalProducts) {
+                if(items.indexOf(this.originalProducts[key].id) >= 0) {
+                    komplectItems.push(this.originalProducts[key])
                 }
             }
             return komplectItems;

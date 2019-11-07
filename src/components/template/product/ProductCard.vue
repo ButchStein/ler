@@ -114,6 +114,7 @@ export default {
           let replacer = this.replacerInCart
           this.$store.commit('replaceInCart', {replace: replacer, item: this.product});
           this.$store.commit('replaceInFiltered', {replace: replacer, item: this.product});
+          this.$store.commit('resetKomplect');
           this.$emit('close');
       },
       select(product) {

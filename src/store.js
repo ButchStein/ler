@@ -46,7 +46,8 @@ export default new Vuex.Store({
         coloration: ''
       }
     },
-    filteredProducts: []
+    filteredProducts: [],
+    originalFilteredProducts: [],
   },
   mutations: {
     setPath(state, path) {
@@ -113,8 +114,9 @@ export default new Vuex.Store({
       state.step = 0
     },
     cartKomplect(state, komplect) {
-      state.cart = []
       state.komplect = komplect.id
+      state.filteredProducts = [...state.originalFilteredProducts]
+      state.cart = []
 
       for(let key in komplect.items) {
         state.cart.push(komplect.items[key])
@@ -209,6 +211,7 @@ export default new Vuex.Store({
       }
 
       state.filteredProducts = result
+      state.originalFilteredProducts = [...result]
       state.step = path.length-2
     },
     replaceInFiltered(state, data) {
@@ -309,6 +312,9 @@ export default new Vuex.Store({
     },
     products({filteredProducts}) {
       return filteredProducts
+    },
+    originalProducts({originalFilteredProducts}) {
+      return originalFilteredProducts
     },
     groups({groups, filter}) {
       if(filter.categories < 3) {
