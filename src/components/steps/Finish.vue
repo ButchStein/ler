@@ -44,7 +44,7 @@
     </div>
     <transition name="fade">
         <modal v-model="popup" @close="$store.commit('hide')">
-            <product-card :product="$store.getters.product"/>
+            <product-card :product="$store.getters.product" @close="$store.commit('hide')"/>
         </modal>
     </transition>
 </div>

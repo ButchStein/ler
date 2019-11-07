@@ -7,10 +7,10 @@
                     <p>Выберите варианты ответов или введите данные из анализа воды</p>
                 </template>
                 <template v-slot:body>
-                    <switcher title="Жёсткость" v-model="hardness" @change="setFilter()">
+                    <switcher title="Жёсткая" v-model="hardness" @change="setFilter()">
                         Беспокоят ли вас белые известковые отложения на водонагревательных элементах, сантехнике, кафеле, душевых кабинах?
                     </switcher>
-                    <switcher title="Железо" v-model="fe" @change="setFilter()">
+                    <switcher title="Железистая" v-model="fe" @change="setFilter()">
                         Беспокоит ли вас бурый цвет воды или ржавые подтёки на сантехнике?
                     </switcher>
                 </template>

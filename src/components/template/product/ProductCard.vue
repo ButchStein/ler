@@ -30,10 +30,10 @@
                       <button class="product-list__item-button product-list__item-button--detailed active" v-if="showButton"  @click="replace()">
                           Заменить
                       </button>
-                      <button class="product-list__item-button product-list__item-button--detailed active" v-else-if="!showButton && !inCart" @click="$store.commit('cartAddItem', product)">
+                      <button class="product-list__item-button product-list__item-button--detailed active" v-else-if="!showButton && !inCart" @click="select(product)">
                           Выбрать
                       </button>
-                      <button class="product-list__item-button product-list__item-button--detailed" v-else @click="$store.commit('cartRemoveItem', product)">Убрать</button>
+                      <button class="product-list__item-button product-list__item-button--detailed" v-else @click="remove(product)">Убрать</button>
                     </div>
                     <div class="product__variants-mobile" v-if="product.subtitutes.length">
                         <button class="button  button-secondary" @click="showSubstitudes = true" v-if="!showSubstitudes">Все варианты</button>
@@ -114,6 +114,15 @@ export default {
           let replacer = this.replacerInCart
           this.$store.commit('replaceInCart', {replace: replacer, item: this.product});
           this.$store.commit('replaceInFiltered', {replace: replacer, item: this.product});
+          this.$emit('close');
+      },
+      select(product) {
+          this.$store.commit('cartAddItem', product)
+          this.$emit('close');
+      },
+      remove(product) {
+          this.$store.commit('cartRemoveItem', product)
+          this.$emit('close')
       },
       change(item) {
           this.$store.commit('show', item)
