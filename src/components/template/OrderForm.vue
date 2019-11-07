@@ -1,15 +1,19 @@
 <template>
     <form @submit.prevent="submit()" class="form-inline">
+        <ul class="errors" v-if="errors.length > 0">
+            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+        </ul>
+
         <div class="form-subtitle">Данные покупателя</div>
         <div class="row">
             <div class="col-md-4">
-                <input v-model="params.customer_name" name="name" type="text" class="form-input" placeholder="Имя" required/>
+                <input v-model="params.customer_name" name="customer_name" type="text" class="form-input" placeholder="Имя" required/>
             </div>
             <div class="col-md-4">
-                <input v-model="params.customer_email" name="email" type="email" class="form-input" placeholder="Email" required/>
+                <input v-model="params.customer_email" name="customer_email" type="email" class="form-input" placeholder="Email" required/>
             </div>
             <div class="col-md-4">
-                <input v-mask="'+7 (999) 999-99-99'" v-model="params.customer_phone" name="phone" type="text" class="form-input" placeholder="Телефон" required/>
+                <input v-mask="'+7 (999) 999-99-99'" v-model="params.customer_phone" name="customer_phone" type="text" class="form-input" placeholder="Телефон" required/>
             </div>
         </div>
 
@@ -18,18 +22,18 @@
         <div class="form-subtitle">Адрес доставки</div>
         <div class="row">
             <div class="col-md-4">
-                <input v-model="params.customer_address_city" name="city" type="text" class="form-input" placeholder="Город" required/>
+                <input v-model="params.customer_address_city" name="customer_address_city" type="text" class="form-input" placeholder="Город" required/>
             </div>
             <div class="col-md-4">
-                <input v-model="params.customer_address_street" name="street" type="text" class="form-input" placeholder="Улица" required/>
+                <input v-model="params.customer_address_street" name="customer_address_street" type="text" class="form-input" placeholder="Улица" required/>
             </div>
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-6">
-                        <input v-model="params.customer_address_house" name="house" type="text" class="form-input sm" placeholder="Дом" required/>
+                        <input v-model="params.customer_address_house" name="customer_address_house" type="text" class="form-input sm" placeholder="Дом" required/>
                     </div>
                     <div class="col-6">
-                        <input v-model="params.customer_address_flat" name="flat" type="text" class="form-input sm" placeholder="Квартира" />
+                        <input v-model="params.customer_address_flat" name="customer_address_flat" type="text" class="form-input sm" placeholder="Квартира" />
                     </div>
                 </div>
 
@@ -57,20 +61,43 @@ export default {
                 customer_address_flat: '',
                 customer_address_street: ''
             },
-            checked: false
+            required: [
+                'customer_name',
+                'customer_phone',
+                'customer_email',
+                'customer_address_city',
+                'customer_address_house',
+                'customer_address_street'
+            ],
+            checked: false,
+            errors: []
         }
     },
     methods: {
         submit() {
             let self = this
-            this.$store.commit('thankyou')
-            axios.post('http://guru.madex.pro/order/create', Object.assign({}, this.params, this.$store.getters.cartForOrder))
-            .then(function(){
-                self.$store.commit('thankyou')
+            this.errors = []
+
+            this.required.forEach(function(key) {
+                if(key === 'customer_email' && !/[a-zA-Z0-9-._]+@[a-zA-Z0-9-._]+\.[a-z]+/i.test(self.params[key])) {
+                     self.errors.push("Введите корректный email")
+                } else {
+                    if(self.params[key] == '') {
+                        let elements = document.getElementsByName(key)
+                        self.errors.push(`Заполните поле "${elements[0].placeholder}"`)
+                    }
+                }
             })
-            .catch(function(err){
-                alert(err)
-            })
+
+            if(this.errors.length === 0) {
+                axios.post('http://guru.madex.pro/order/create', Object.assign({}, this.params, this.$store.getters.cartForOrder))
+                .then(function(){
+                    self.$store.commit('thankyou')
+                })
+                .catch(function(err){
+                    alert(err)
+                })
+            }
         }
     },
     computed: {
@@ -88,4 +115,11 @@ export default {
     line-height: 24px;
     margin-bottom: 16px;
     margin-top: 32px;
+.errors
+    color: red;
+    font-size: 0.9em;
+    list-style-type: disc;
+    margin: 1em 20px;
+.field-error
+    border: 1px solid red;
 </style>
