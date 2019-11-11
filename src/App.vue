@@ -50,6 +50,8 @@ export default {
     this.$store.dispatch('loadGroups');
     this.$store.dispatch('loadProducts');
     this.$store.dispatch('loadPackages');
+    this.$metrika.hit('/')
+    this.$ga.page('/')
   }
 }
 </script>

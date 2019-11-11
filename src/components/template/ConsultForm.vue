@@ -42,6 +42,8 @@ export default {
             axios.post('http://guru.madex.pro/form/callback', this.params).then(
                 function() {
                     self.sent = true
+                    self.$ga.event('form', 'consult')
+                    self.$metrika.reachGol('consult')
                 }
             ).catch(
                 function() {

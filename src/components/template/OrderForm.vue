@@ -93,6 +93,8 @@ export default {
                 axios.post('http://guru.madex.pro/order/create', Object.assign({}, this.params, this.$store.getters.cartForOrder))
                 .then(function(){
                     self.$store.commit('thankyou')
+                    self.$ga.event('form', 'order', 'order-guru', self.$store.getters.cartPrice)
+                    self.$metrika.reachGol('order')
                 })
                 .catch(function(err){
                     alert(err)
