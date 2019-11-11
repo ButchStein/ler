@@ -8,7 +8,7 @@
                 <div class="product-list__item-info">
                     <div class="product-list__item-title">{{item.name}}</div>
                     <div class="product-list__item-desc">{{item.short_desc}}</div>
-                    <!-- <a href="#" @click.stop.prevent="show()">Подробнее</a> -->
+                    <div class="product__brief-warning" v-if="item.additional_short_desc">{{ item.additional_short_desc }}</div>
                 </div>
             </div>
             <div class="product-list__control">
@@ -120,6 +120,10 @@ export default {
   flex-grow: 1;
   margin: 0 20px;
   position: relative;
+
+  .product__brief-warning {
+      font-size: 0.9em;
+  }
 }
 .product-list__item-title {
   font-size: 20px;
