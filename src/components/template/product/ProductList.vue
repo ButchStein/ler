@@ -1,5 +1,5 @@
 <template>
-    <div class="product-list__item" @mouseenter="hover()" @mouseleave="blur()" @click="change()">
+    <div class="product-list__item" @mouseenter="hover()" @mouseleave="blur()" @click="show()">
         <div class="product-list__item-label" :class="{checked: checked}">
             <div class="product-list__item-inner">
                 <div class="product-list__item-img" :style="{'border-color': item.color}">
@@ -8,7 +8,7 @@
                 <div class="product-list__item-info">
                     <div class="product-list__item-title">{{item.name}}</div>
                     <div class="product-list__item-desc">{{item.short_desc}}</div>
-                    <a href="#" @click.stop.prevent="show()">Подробнее</a>
+                    <!-- <a href="#" @click.stop.prevent="show()">Подробнее</a> -->
                 </div>
             </div>
             <div class="product-list__control">
@@ -60,6 +60,7 @@ export default {
 <style lang="scss">
 .product-list__item {
   padding-bottom: 12px;
+  cursor: pointer;
 }
 
 .product-list__item-img {
