@@ -3,12 +3,12 @@
         <div class="container">
             <div class="row">
                 <div class="cart-summary__total col-sm-4">
-                    <!--<div class="cart-summary__total-discount">Скидка за комплект 5%</div>-->
-                    <div class="cart-summary__total-discount">&nbsp;</div>
+                    <div class="cart-summary__total-discount">Скидка за комплект 5%</div>
+                    <!-- <div class="cart-summary__total-discount">&nbsp;</div> -->
                     <div class="cart-summary__total-amount">
                         <div class="cart-summary__total-amount-items">Всего ({{cartTotal}} шт.)</div>
                         <div class="cart-summary__total-amount-price">
-                            <!--<span class="price-old price">{{cartPrice}}</span>-->
+                            <span class="price-old price">{{oldPrice}}</span>
                             <span class="price">{{cartPrice}}</span>
                         </div>
                     </div>
@@ -55,11 +55,14 @@ export default {
         cart() {
             return this.$store.getters.cart
         },
-        cartPrice() {
+        oldPrice() {
             return this.$store.getters.cartPrice
         },
         cartTotal() {
             return this.$store.getters.cartTotal
+        },
+        cartPrice() {
+            return Math.round(this.oldPrice*0.95)
         }
     },
     methods: {
