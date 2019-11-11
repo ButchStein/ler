@@ -2,8 +2,17 @@
     <div class="product-group" :id="'product-group-'+group.id">
         <div class="product-group__title">{{ group.name }}</div>
         <div class="product-group__desc">{{ group.description }}</div>
-        <div class="product-group__warning" v-if="chooseOne">Можно выбрать только один</div>
-        <ProductList v-for="(item, index) in items" :key="index" :item="item"/>
+        
+        <div v-if="chooseOne">
+            <div class="product-group__warning">Без минерализации</div>
+            <ProductList v-for="(item, index) in itemsWithoutMineralization" :key="index" :item="item"/>
+
+            <div class="product-group__warning">C минерализацией</div>
+            <ProductList v-for="(item, index) in itemsWithMineralization" :key="index+100" :item="item"/>
+        </div>
+        <div v-else>
+            <ProductList v-for="(item, index) in items" :key="index" :item="item"/>
+        </div>
     </div>
 </template>
 
@@ -18,12 +27,19 @@ export default {
     computed: {
         chooseOne() {
             return this.group.id === this.$store.getters.chooseOneGroup
+        },
+        itemsWithMineralization() {
+            return this.items.filter(function(item) { return item.filter_mineralization })
+        },
+        itemsWithoutMineralization() {
+            return this.items.filter(function(item) { return !item.filter_mineralization })
         }
     }
 }
 </script>
 
 <style lang="scss">
+
 .product-group {
     margin-bottom: 96px;
 
@@ -59,6 +75,10 @@ export default {
             vertical-align: middle;
             margin-left: 6px;
         }
+    }
+
+    .product-list__item + &__warning {
+        margin-top: 26px;
     }
 }
 
