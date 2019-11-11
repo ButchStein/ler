@@ -364,6 +364,14 @@ export default new Vuex.Store({
         }
         return false;
       }
+    },
+    isInFiltered({filteredProducts}) {
+      return function(productId) {
+        for(let i in filteredProducts) {
+          if (filteredProducts[i].id == productId) return true
+        }
+        return false;
+      }
     }
   }
 })

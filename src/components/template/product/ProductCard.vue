@@ -30,10 +30,10 @@
                       <button class="product-list__item-button product-list__item-button--detailed active" v-if="showButton"  @click="replace()">
                           Заменить
                       </button>
-                      <button class="product-list__item-button product-list__item-button--detailed active" v-else-if="!showButton && !inCart" @click="select(product)">
+                      <button class="product-list__item-button product-list__item-button--detailed active" v-else-if="!showButton && !inCart" @click="select()">
                           Выбрать
                       </button>
-                      <button class="product-list__item-button product-list__item-button--detailed" v-else @click="remove(product)">Убрать</button>
+                      <button class="product-list__item-button product-list__item-button--detailed" v-else @click="remove()">Убрать</button>
                     </div>
                     <div class="product__variants-mobile" v-if="product.subtitutes.length">
                         <button class="button  button-secondary" @click="showSubstitudes = true" v-if="!showSubstitudes">Все варианты</button>
@@ -105,6 +105,18 @@ export default {
 
           return null
         },
+        replacerInFiltered() {
+          let subtitutes = this.subtitutes
+
+          for(let i in subtitutes) {
+            // показываем кнопку,если один из заменителей корзине
+            if(this.$store.getters.isInFiltered(subtitutes[i].id) && subtitutes[i].id !== this.product.id) {
+              return subtitutes[i].id
+            }
+          }
+
+          return null
+        },
         inCart() {
           return this.$store.getters.isInCart(this.product.id)
         }
@@ -114,15 +126,18 @@ export default {
           let replacer = this.replacerInCart
           this.$store.commit('replaceInCart', {replace: replacer, item: this.product});
           this.$store.commit('replaceInFiltered', {replace: replacer, item: this.product});
-          this.$store.commit('resetKomplect');
+          this.$store.commit('resetKomplect')
           this.$emit('close');
       },
-      select(product) {
-          this.$store.commit('cartAddItem', product)
+      select() {
+          let replacer = this.replacerInFiltered
+          this.$store.commit('replaceInFiltered', {replace: replacer, item: this.product});
+          this.$store.commit('cartAddItem', this.product)
+          this.$store.commit('resetKomplect')
           this.$emit('close');
       },
-      remove(product) {
-          this.$store.commit('cartRemoveItem', product)
+      remove() {
+          this.$store.commit('cartRemoveItem', this.product)
           this.$emit('close')
       },
       change(item) {
