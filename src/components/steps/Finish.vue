@@ -8,12 +8,14 @@
                         <p>Воспользуйтесь рекомендуемыми комплектациями либо выберите решения из списка.</p>
                     </template>
                     <template v-slot:body>
+                        <div id="komplects"></div>
                         <div class="cards cards-komlects">
                             <komplect :key="komplect.id"
                             v-for="komplect in $store.getters.packages"
                             :komplect="komplect"
                             :items="calcKomplect(komplect.products)"/>
                         </div>
+                        
 
                         <product-group
                         :group="group"
@@ -73,6 +75,9 @@ export default {
         ProductCard,
         MapOfFlat
     },
+    data() {
+        return { stickyKomplects: false }
+    },
     computed: {
         groups() {
             return this.$store.getters.groups
@@ -107,7 +112,16 @@ export default {
                 }
             }
             return komplectItems;
+        },
+        makeSticky() {
+            this.stickyKomplects = document.getElementById('komplects').getBoundingClientRect().top < 20
         }
+    },
+    created() {
+        window.addEventListener('scroll', this.makeSticky)
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.makeSticky)
     }
 }
 </script>
@@ -135,6 +149,12 @@ export default {
     margin-bottom: 36px;
     flex-wrap: nowrap;
     align-items: stretch;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0px;
+    z-index: 10;
+    padding: 10px 0 0;
+    background-color: #fff;
 }
 
 @media (max-width: 992px) {
