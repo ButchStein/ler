@@ -94,7 +94,7 @@ export default {
                 .then(function(){
                     self.$store.commit('thankyou')
                     self.$ga.event('form', 'order', 'order-guru', self.$store.getters.cartPrice)
-                    self.$metrika.reachGol('order')
+                    self.$metrika.reachGoal('order')
                 })
                 .catch(function(err){
                     alert(err)

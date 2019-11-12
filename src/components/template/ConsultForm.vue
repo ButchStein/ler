@@ -43,7 +43,7 @@ export default {
                 function() {
                     self.sent = true
                     self.$ga.event('form', 'consult')
-                    self.$metrika.reachGol('consult')
+                    self.$metrika.reachGoal('consult')
                 }
             ).catch(
                 function() {
