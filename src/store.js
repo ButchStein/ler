@@ -296,6 +296,7 @@ export default new Vuex.Store({
     },
     cartForOrder({cart}) {
       let result = []
+
       for(let i in cart) {
         result.push({
           "id": cart[i].id,
@@ -303,6 +304,19 @@ export default new Vuex.Store({
         })
       }
       return {"items": result}
+    },
+    cartBarrier({cart}) {
+      let products = []
+
+      for(let i in cart) {
+        if (cart[i].barrier_id === "") {
+          return false
+        }
+
+        products.push(cart[i].barrier_id)
+      }
+
+      return 'https://barrier.ru/udata/emarket/basketPutAll/?products='+products.join(',')
     },
     categories({categories}) {
       return categories
@@ -368,7 +382,7 @@ export default new Vuex.Store({
     isInFiltered({filteredProducts}) {
       return function(productId) {
         for(let i in filteredProducts) {
-          if (filteredProducts[i].id == productId) return true
+          if (filteredProducts[i].id == productId)  return true
         }
         return false;
       }

@@ -50,7 +50,8 @@ export default {
     this.$store.dispatch('loadGroups');
     this.$store.dispatch('loadProducts');
     this.$store.dispatch('loadPackages');
-    this.$metrika.hit('/')
+    let self = this
+    setTimeout(function() {self.$metrika.hit('/') }, 2000 )
     this.$ga.page('/')
   }
 }

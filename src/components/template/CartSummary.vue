@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="cart-summary__actions col-sm-3">
-                    <action-button @click="$store.commit('nextStep')" title="Заказать" primary="true" :restyle="{display: 'block', width: '100%', marginBottom: (!sticky)?'64px':'0px'}"/>
+                    <action-button @click="order()" title="Заказать" primary="true" :restyle="{display: 'block', width: '100%', marginBottom: (!sticky)?'64px':'0px'}"/>
                     <start-again-btn v-if="!sticky"/>
                 </div>
             </div>
@@ -68,6 +68,14 @@ export default {
     methods: {
         makeSticky() {
             this.sticky = document.getElementById('breakpoint').getBoundingClientRect().top > document.documentElement.clientHeight - 100
+        },
+        order() {
+          let cartLink = this.$store.getters.cartBarrier;
+          if(cartLink === false) {
+            this.$store.commit('nextStep')
+          } else {
+            window.location.href = cartLink
+          } 
         }
     },
     created() {
@@ -75,7 +83,8 @@ export default {
     },
     destroyed() {
          window.removeEventListener('scroll', this.makeSticky)
-    }
+    },
+    
 }
 </script>
 
