@@ -65,7 +65,7 @@ export default {
         font-size: 20px;
         line-height: 28px;
 
-        &:after {
+        /*&:after {
             width: 17px;
             height: 17px;
             background: url("../../../assets/warning.svg") 50% 50% no-repeat;
@@ -74,7 +74,7 @@ export default {
             display: inline-block;
             vertical-align: middle;
             margin-left: 6px;
-        }
+        }*/
     }
 
     .product-list__item + &__warning {
