@@ -39,7 +39,7 @@ export default {
     methods: {
         submit() {
             let self = this
-            axios.post('http://guru.madex.pro/form/callback', this.params).then(
+            axios.post(this.$store.getters.apiUrl+'form/callback', this.params).then(
                 function() {
                     self.sent = true
                     self.$ga.event('form', 'consult')

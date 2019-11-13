@@ -90,7 +90,7 @@ export default {
             })
 
             if(this.errors.length === 0) {
-                axios.post('http://guru.madex.pro/order/create', Object.assign({}, this.params, this.$store.getters.cartForOrder))
+                axios.post(this.$store.getters.apiUrl+'order/create', Object.assign({}, this.params, this.$store.getters.cartForOrder))
                 .then(function(){
                     self.$store.commit('thankyou')
                     self.$ga.event('form', 'order', 'order-guru', self.$store.getters.cartPrice)

@@ -4,10 +4,11 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const api_url = 'http://guru.madex.pro/';
+const api_url = 'https://api.guru.barrier.ru/';
 
 export default new Vuex.Store({
   state: {
+    apiUrl: api_url,
     komplect: 2,
     product: null,
     productHover: '',
@@ -386,6 +387,9 @@ export default new Vuex.Store({
         }
         return false;
       }
+    },
+    apiUrl({apiUrl}) {
+      return apiUrl;
     }
   }
 })
