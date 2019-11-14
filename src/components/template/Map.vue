@@ -64,8 +64,8 @@ export default {
                     {id: 1, x: '100px',  y: '230px', bgx: '-240px', bgy: "-460px", name: "Фильтр под мойку", group: 3},
                     {id: 2, x: '175px', y: '265px', bgx: '-380px', bgy: "-560px", name: "Механический фильтр", group: 1},
                     {id: 3, x: '200px', y: '253px', bgx: '-430px', bgy: "-520px", name: "Система для коттеджа", group: 1},
-                    {id: 4, x: '140px', y: '170px', bgx: '-270px', bgy: "-380px", name: "Фильтр для душа", group: 2},
-                    {id: 5, x: '200px', y: '145px', bgx: '-420px', bgy: "-320px", name: "Фильтр для бытовой техники", group: 2},   
+                    //{id: 4, x: '140px', y: '170px', bgx: '-270px', bgy: "-380px", name: "Фильтр для душа", group: 2},
+                    //{id: 5, x: '200px', y: '145px', bgx: '-420px', bgy: "-320px", name: "Фильтр для бытовой техники", group: 2},   
                 ]
             }
         },
