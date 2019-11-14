@@ -1,6 +1,6 @@
 <template>
     <div class="map zoom" :class="{pic1: isFlat, pic2: !isFlat, active:active}" :style="{backgroundPosition: backgroundPosition}">
-        <img src="../../assets/flat.jpg" v-if="isFlat"/>
+        <img src="../../assets/flatbig.jpg" v-if="isFlat"/>
         <img src="../../assets/home.jpg" v-else/>
 
         <div class="map__desc">
