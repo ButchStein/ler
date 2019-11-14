@@ -74,6 +74,8 @@ export default {
           if(cartLink === false) {
             this.$store.commit('nextStep')
           } else {
+            this.$ga.event('form', 'order', 'order-barrier', this.$store.getters.cartPrice)
+            this.$metrika.reachGoal('order-barrier')
             window.location.href = cartLink
           } 
         }
