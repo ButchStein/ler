@@ -58,6 +58,10 @@ export default {
                 self.$store.commit('finish')
             }, 100)
         }
+    },
+    mounted() {
+        this.fe = this.$store.getters.filter('fe')
+        this.hardness = this.$store.getters.filter('hardness')
     }
 }
 </script>

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="cart-summary__total col-sm-4">
-                    <div class="cart-summary__total-discount">Скидка за комплект 5%</div>
+                    <div class="cart-summary__total-discount">-5% комплект</div>
                     <!-- <div class="cart-summary__total-discount">&nbsp;</div> -->
                     <div class="cart-summary__total-amount">
                         <div class="cart-summary__total-amount-items">Всего ({{cartTotal}} шт.)</div>
