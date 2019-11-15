@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss">
 .pic1 {
-    background: url('../../assets/flat.jpg') no-repeat;
+    background: url('../../assets/flatbig.jpg') no-repeat;
     &.active {
         background-size: 200% auto;
     }
