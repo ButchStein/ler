@@ -134,7 +134,7 @@ export default {
 .cart-summary__total-amount:after, .cart-summary__total-item:after {
   content: " ";
   position: absolute;
-  border: 1px dotted #666;
+  border-bottom: 1px dotted #666;
   opacity: 0.25;
   width: 100%;
   bottom: 3px;

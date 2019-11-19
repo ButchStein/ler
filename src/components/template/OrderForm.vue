@@ -81,6 +81,8 @@ export default {
             this.required.forEach(function(key) {
                 if(key === 'customer_email' && !/[a-zA-Z0-9-._]+@[a-zA-Z0-9-._]+\.[a-z]+/i.test(self.params[key])) {
                      self.errors.push("Введите корректный email")
+                } else if(key === 'customer_phone' && !/\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}/.test(self.params[key])) {
+                    self.errors.push("Введите номер телефона в формате +7 (999) 999-99-99")
                 } else {
                     if(self.params[key] == '') {
                         let elements = document.getElementsByName(key)

@@ -98,9 +98,9 @@ export default {
                 return item.group_id == id
             } )
 
-            // if (!result.length) {
-            //     this.$store.commit('feedback')
-            // }
+            if (!result.length) {
+                this.$store.commit('feedback')
+            }
 
             return result.sort(function(a, b) { return a.price - b.price })
         },
