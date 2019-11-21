@@ -4,21 +4,22 @@
       <template v-slot:body>
         <div class="content">
           <div class="row">
-            <div class="content__desc col col-xl-4">
+            <div class="content__desc col-lg-4 col-sm-12">
               <div class="content__title">Не нашли свой район?</div>
               <div
                 class="content__text"
               >С помощью двух простых вопросов поможем определить тип воды и посоветуем фильтры.</div>
-              <action-button
-                class="content__button"
-                title="Подобрать решение"
-                primary="true"
-                @click="setPath('flat')"
-              />
             </div>
-            <div class="content__map col col-xl-8">
-              <img src="../../assets/district_map.jpg" alt="Карта района" />
+            <div class="content__map col-lg-8 col-sm-12">
+              <img class="content__map__img" src="../../assets/district_map.jpg" alt="Карта района" />
             </div>
+
+            <action-button
+              class="content__button"
+              title="Подобрать решение"
+              primary="true"
+              @click="setPath('flat')"
+            />
           </div>
         </div>
       </template>
@@ -44,12 +45,16 @@ export default {
 </script>
 
 <style lang="scss">
+.step__header {
+  display: none;
+}
 .content {
-  display: flex;
-  flex-flow: wrap;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
 
+  &__desc {
+    align-self: center;
+  }
   &__title {
     width: 100%;
     max-width: 229px;
@@ -57,17 +62,57 @@ export default {
     color: #000000;
     padding-right: 10px;
     margin-bottom: 16px;
+
+    @media (max-width: 991px) {
+      max-width: 100%;
+      font-size: 30px;
+      line-height: 35px;
+      text-align: center;
+      padding-right: 0;
+    }
+    @media (max-width: 767px) {
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 8px;
+    }
   }
   &__text {
     width: 100%;
     max-width: 300px;
     margin-bottom: 32px;
-    line-height: 1.35;
+    line-height: 20px;
+    @media (max-width: 991px) {
+      max-width: 100%;
+      text-align: center;
+      padding-right: 0;
+    }
+    @media (max-width: 767px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
   &__button {
     width: 100%;
     max-width: 300px;
     height: 65px;
+    margin-top: -15%;
+    margin-left: 7.5px;
+    @media (max-width: 991px) {
+      max-width: 100%;
+      align-self: center;
+      margin: 0 7.5px;
+    }
+    @media (max-width: 574px) {
+      margin: 0 15px;
+    }
+  }
+  &__map {
+    overflow: hidden;
+    min-height: 100%;
+    &__img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
 </style>

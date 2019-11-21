@@ -17,5 +17,6 @@ export default {};
         letter-spacing: 0.01em
         display: inline-block
         color: #24BBF6
-   
+        :hover
+            color: darken(#24BBF6, 10%) !important
 </style>
