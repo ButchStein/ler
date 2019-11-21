@@ -100,10 +100,10 @@ export default {
     @media (max-width: 991px) {
       max-width: 100%;
       align-self: center;
-      margin: 0 7.5px;
+      margin: 32px 7.5px 24px;
     }
     @media (max-width: 574px) {
-      margin: 0 15px;
+      margin: 24px 15px 16px;
     }
   }
   &__map {
