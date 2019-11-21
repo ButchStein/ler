@@ -3,20 +3,22 @@
     <step>
       <template v-slot:body>
         <div class="content">
-          <div class="content__desc">
-            <div class="content__title">Не нашли свой район?</div>
-            <div
-              class="content__text"
-            >С помощью двух простых вопросов поможем определить тип воды и посоветуем фильтры.</div>
-            <action-button
-              class="content__button"
-              title="Подобрать решение"
-              primary="true"
-              @click="setPath('flat')"
-            />
-          </div>
-          <div class="content__map">
-            <img src="../../assets/district_map.jpg" alt="Карта района" />
+          <div class="row">
+            <div class="content__desc col col-xl-4">
+              <div class="content__title">Не нашли свой район?</div>
+              <div
+                class="content__text"
+              >С помощью двух простых вопросов поможем определить тип воды и посоветуем фильтры.</div>
+              <action-button
+                class="content__button"
+                title="Подобрать решение"
+                primary="true"
+                @click="setPath('flat')"
+              />
+            </div>
+            <div class="content__map col col-xl-8">
+              <img src="../../assets/district_map.jpg" alt="Карта района" />
+            </div>
           </div>
         </div>
       </template>

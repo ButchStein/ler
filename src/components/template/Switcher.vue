@@ -70,12 +70,12 @@ export default {
     }
 
     &__button {
-        border: 1px solid #24BBF6;
+        border: 1px solid #69BF62;
         box-sizing: border-box;
         border-radius: 100px;
         font-size: 15px;
         font-weight: 600;
-        color: #24BBF6;
+        color: #69BF62;
         background: #fff;
         padding: 17px 35px;
         cursor: pointer;
