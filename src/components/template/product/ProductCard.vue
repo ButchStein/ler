@@ -277,7 +277,7 @@ export default {
   cursor: pointer;
 }
 .product__tabs-tab.active {
-  border-bottom: 4px solid #24BBF6;
+  border-bottom: 4px solid #69BF62;
   color: #000;
 }
 .product__tabs-content {

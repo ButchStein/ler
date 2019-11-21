@@ -13,6 +13,7 @@ import './styles/grid.sass'
 import './styles/forms.sass'
 import './fonts/fonts.css'
 import AppHeader from './components/template/Header'
+import WaterDistrict from './components/steps/WaterDistrict'
 import HouseChoose from './components/steps/HouseChoose'
 import SmellChoose from './components/steps/SmellChoose'
 import PeopleChoose from './components/steps/PeopleChoose'
@@ -27,6 +28,7 @@ export default {
   name: 'app',
   components: {
     AppHeader,
+    WaterDistrict,
     SmellChoose,
     HouseChoose,
     PeopleChoose,
@@ -87,10 +89,10 @@ body {
   }
 }
 a {
-  color: #24BBF6;
+  color: #69BF62;
   text-decoration: none;
   &:hover {
-    color: darken(#24BBF6, 10%);
+    color: darken(#69BF62, 10%);
   }
 }
 .display-block {

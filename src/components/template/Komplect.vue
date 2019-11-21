@@ -70,7 +70,7 @@ export default {
     }
 
     & input[type='radio']:checked + label {
-        border: 3px solid #24BBF6;
+        border: 3px solid #69BF62;
 
         &::before {
             opacity: 0;

@@ -83,7 +83,7 @@ export default {
 }
 
 .card__action-text {
-  color: #24BBF6;
+  color: #69BF62;
   text-transform: uppercase;
   margin-top: 32px
 }

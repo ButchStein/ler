@@ -125,7 +125,7 @@ export default {
         position: absolute;
         width: 18px;
         height: 18px;
-        background: #24BBF6;
+        background: #69BF62;
         border: 2px solid #FFFFFF;
         border-radius: 100%;
         z-index: 200;

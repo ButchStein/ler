@@ -7,10 +7,15 @@
                     <source media="(max-width: 767px)" srcset="../../assets/barrier-mobile.svg">
                     <img class="header__logo" src="../../assets/barrier.svg"/>
                 </picture>
+                <picture>
+                    <source media="(min-width: 768px)" srcset="../../assets/leroy_logo.svg">
+                    <source media="(max-width: 767px)" srcset="../../assets/leroy_logo.svg">
+                    <img class="header__logo-leroy" src="../../assets/leroy_logo.svg"/>
+                </picture>
                 <div class="header__descriptor">Подбор комплексного решения для вашего дома</div>
                 <a href="tel:88001001007" class="header__phone">8 800 100-100-7</a>
                 <a href="tel:88001001007" class="header__tel">
-                    <img src="../../assets/phone.svg" alt="">
+                    <img src="../../assets/phone-ler.svg" alt="">
                 </a>
             </div>
         </div>
@@ -35,6 +40,11 @@
         margin-right: 20px;
         width: 152px;
         height: 32px;
+    }
+    &__logo-leroy{
+        margin-right: 30.35px;
+        width: 52.65px;
+        height: 31.65px;
     }
 
     &__descriptor {
@@ -84,7 +94,7 @@
 
         &__phone {
             margin: 0;
-            color: #004990;
+            color: #69BF62;
             opacity: 0.6;
         }
 

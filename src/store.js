@@ -19,14 +19,14 @@ export default new Vuex.Store({
     packages: [],
     step: 0,
     paths: {
-      initial: ["HouseChoose"],
-      flat: ["HouseChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
-      house: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
-      dacha: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
+      initial: ["WaterDistrict"],
+      flat: ["WaterDistrict", "WaterChoose", "Analyses", "Finish", "OrderForm"],
+      // house: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
+      // dacha: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       feedback: ["Feedback"],
       thankyou: ["Thankyou"]
     },
-    path: ["HouseChoose"],
+    path: ["WaterDistrict"],
     cart: [],
     chooseOneGroup: 3,
     filter: {
