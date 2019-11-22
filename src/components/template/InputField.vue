@@ -29,6 +29,7 @@ export default {
     line-height: 15px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
+    color: #000000
 
 .input-component__field
     background: #EFF1F1;

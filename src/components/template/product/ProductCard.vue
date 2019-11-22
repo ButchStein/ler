@@ -191,7 +191,7 @@ export default {
   flex-shrink: 0;
 }
 .product__variants__item.active:before {
-  background: url("../../../assets/active.svg") 0 0 no-repeat;
+  background: url("../../../assets/active-green.svg") 0 0 no-repeat;
   border: 0;
 }
 .product__variants__item-warning {
@@ -226,7 +226,7 @@ export default {
 .product__brief-warning:before {
   width: 17px;
   height: 17px;
-  background: url("../../../assets/warning.svg") 50% 50% no-repeat;
+  background: url("../../../assets/warning-green.svg") 50% 50% no-repeat;
   background-size: 100% 100%;
   content: " ";
   display: inline-block;

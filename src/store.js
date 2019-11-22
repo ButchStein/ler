@@ -20,7 +20,7 @@ export default new Vuex.Store({
     step: 0,
     paths: {
       initial: ["WaterDistrict"],
-      flat: ["WaterDistrict", "WaterChoose", "Analyses", "Finish", "OrderForm"],
+      flat: ["WaterDistrict", "WaterChoose", "Analyses", "Finish", "Thankyou"],
       house: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       dacha: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       feedback: ["Feedback"],

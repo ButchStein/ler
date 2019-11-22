@@ -1,93 +1,109 @@
 <template>
-    <div class="cart-summary" :class="{fixed: sticky}" id="summary">
-        <div class="container">
-            <div class="row">
-                <div class="cart-summary__total col-sm-4">
-                    <div class="cart-summary__total-discount">-5% за комплект</div>
-                    <!-- <div class="cart-summary__total-discount">&nbsp;</div> -->
-                    <div class="cart-summary__total-amount">
-                        <div class="cart-summary__total-amount-items">Всего ({{cartTotal}} шт.)</div>
-                        <div class="cart-summary__total-amount-price">
-                            <span class="price-old price">{{oldPrice}}</span>
-                            <span class="price">{{cartPrice}}</span>
-                        </div>
-                    </div>
-                    <div class="cart-summary__total-items">
-                        <div class="cart-summary__total-item" v-for="item in cart" :key="item.id">
-                            <div class="cart-summary__total-item-name">
-                                {{ item.name }}
-                            </div>
-                            <div class="cart-summary__total-item-price price">
-                                {{ item.price }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cart-summary__products col-sm-5">
-                    <div class="cart-summary__product" @click="$store.commit('show', item)" v-for="item in cart" :key="item.id" :style="{'border-color': item.color}">
-                        <img :src="item.photo_250_250"/>
-                    </div>
-                </div>
-                <div class="cart-summary__actions col-sm-3">
-                    <action-button @click="order()" title="Заказать" primary="true" :restyle="{display: 'block', width: '100%', marginBottom: (!sticky)?'64px':'0px'}"/>
-                    <start-again-btn v-if="!sticky"/>
-                </div>
+  <div class="cart-summary" :class="{fixed: sticky}" id="summary">
+    <div class="container">
+      <div class="row">
+        <div class="cart-summary__total col-sm-4">
+          <div class="cart-summary__total-discount">-5% за комплект</div>
+          <!-- <div class="cart-summary__total-discount">&nbsp;</div> -->
+          <div class="cart-summary__total-amount">
+            <div class="cart-summary__total-amount-items">Всего ({{cartTotal}} шт.)</div>
+            <div class="cart-summary__total-amount-price">
+              <span class="price-old price">{{oldPrice}}</span>
+              <span class="price">{{cartPrice}}</span>
             </div>
+          </div>
+          <div class="cart-summary__total-items">
+            <div class="cart-summary__total-item" v-for="item in cart" :key="item.id">
+              <div class="cart-summary__total-item-name">{{ item.name }}</div>
+              <div class="cart-summary__total-item-price price">{{ item.price }}</div>
+            </div>
+          </div>
         </div>
+        <div class="cart-summary__products col-sm-5">
+          <div
+            class="cart-summary__product"
+            @click="$store.commit('show', item)"
+            v-for="item in cart"
+            :key="item.id"
+            :style="{'border-color': item.color}"
+          >
+            <img :src="item.photo_250_250" />
+          </div>
+        </div>
+        <div class="cart-summary__actions col-sm-3">
+          <action-button
+            @click="sayThanks()"
+            title="Заказать"
+            primary="true"
+            :restyle="{display: 'block', width: '100%', marginBottom: (!sticky)?'64px':'0px'}"
+          />
+          <start-again-btn v-if="!sticky" />
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import ActionButton from './ActionButton'
-import StartAgainBtn from './StatAgainBtn'
+import ActionButton from "./ActionButton";
+import StartAgainBtn from "./StatAgainBtn";
 
 export default {
-    data() {
-        return {
-            sticky: true
-        }
+  data() {
+    return {
+      sticky: true
+    };
+  },
+  components: {
+    ActionButton,
+    StartAgainBtn
+  },
+  computed: {
+    cart() {
+      return this.$store.getters.cart;
     },
-    components: {
-        ActionButton,
-        StartAgainBtn
+    oldPrice() {
+      return this.$store.getters.cartPrice;
     },
-    computed: {
-        cart() {
-            return this.$store.getters.cart
-        },
-        oldPrice() {
-            return this.$store.getters.cartPrice
-        },
-        cartTotal() {
-            return this.$store.getters.cartTotal
-        },
-        cartPrice() {
-            return Math.round(this.oldPrice*0.95)
-        }
+    cartTotal() {
+      return this.$store.getters.cartTotal;
     },
-    methods: {
-        makeSticky() {
-            this.sticky = document.getElementById('breakpoint').getBoundingClientRect().top > document.documentElement.clientHeight - 100
-        },
-        order() {
-          let cartLink = this.$store.getters.cartBarrier;
-          if(cartLink === false) {
-            this.$store.commit('nextStep')
-          } else {
-            this.$ga.event('form', 'order', 'order-barrier', this.$store.getters.cartPrice)
-            this.$metrika.reachGoal('order-barrier')
-            window.location.href = cartLink
-          } 
-        }
+    cartPrice() {
+      return Math.round(this.oldPrice * 0.95);
+    }
+  },
+  methods: {
+    makeSticky() {
+      this.sticky =
+        document.getElementById("breakpoint").getBoundingClientRect().top >
+        document.documentElement.clientHeight - 100;
     },
-    created() {
-        window.addEventListener('scroll', this.makeSticky)
+    order() {
+      let cartLink = this.$store.getters.cartBarrier;
+      if (cartLink === false) {
+        this.$store.commit("nextStep");
+      } else {
+        this.$ga.event(
+          "form",
+          "order",
+          "order-barrier",
+          this.$store.getters.cartPrice
+        );
+        this.$metrika.reachGoal("order-barrier");
+        window.location.href = cartLink;
+      }
     },
-    destroyed() {
-         window.removeEventListener('scroll', this.makeSticky)
-    },
-    
-}
+    sayThanks() {
+      this.$store.commit("nextStep");
+    }
+  },
+  created() {
+    window.addEventListener("scroll", this.makeSticky);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.makeSticky);
+  }
+};
 </script>
 
 <style lang="scss">
@@ -127,11 +143,13 @@ export default {
   margin-bottom: 17px;
   text-align: right;
 }
-.cart-summary__total-amount, .cart-summary__total-item {
+.cart-summary__total-amount,
+.cart-summary__total-item {
   position: relative;
   overflow: hidden;
 }
-.cart-summary__total-amount:after, .cart-summary__total-item:after {
+.cart-summary__total-amount:after,
+.cart-summary__total-item:after {
   content: " ";
   position: absolute;
   border-bottom: 1px dotted #666;
@@ -151,26 +169,33 @@ export default {
   display: flex;
   align-items: flex-end;
 }
-.cart-summary__total-amount-price, .cart-summary__total-item-price {
+.cart-summary__total-amount-price,
+.cart-summary__total-item-price {
   margin-left: auto;
 }
-.cart-summary__total-amount-items, .cart-summary__total-item-name {
+.cart-summary__total-amount-items,
+.cart-summary__total-item-name {
   display: inline;
   flex-shrink: 1;
   padding-bottom: 2px;
   vertical-align: bottom;
   max-width: 70%;
 }
-.cart-summary__total-amount-items, .cart-summary__total-item-name, .cart-summary__total-amount-price, .cart-summary__total-item-price {
+.cart-summary__total-amount-items,
+.cart-summary__total-item-name,
+.cart-summary__total-amount-price,
+.cart-summary__total-item-price {
   z-index: 2;
   position: relative;
   background-color: #fff;
 }
 
-.cart-summary__total-item-name, .cart-summary__total-amount-items {
+.cart-summary__total-item-name,
+.cart-summary__total-amount-items {
   padding-right: 10px;
 }
-.cart-summary__total-item-price, .cart-summary__total-amount-price {
+.cart-summary__total-item-price,
+.cart-summary__total-amount-price {
   padding-left: 10px;
 }
 
@@ -211,17 +236,15 @@ export default {
 }
 
 @media (max-width: 991px) {
-    .cart-summary {
-
-        &__total-discount {
-            text-align: left;
-        }
+  .cart-summary {
+    &__total-discount {
+      text-align: left;
     }
+  }
 }
 
 @media (max-width: 767px) {
   .cart-summary {
-
     &__total {
       margin-bottom: 10px;
     }
@@ -239,5 +262,4 @@ export default {
     }
   }
 }
-
 </style>

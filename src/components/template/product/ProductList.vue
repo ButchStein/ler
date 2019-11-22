@@ -175,11 +175,11 @@ export default {
   margin-left: 24px;
   flex-shrink: 0;
   text-align: left;
-  background: rgba(36, 187, 246, 0.15);
-  color: #24bbf6;
+  background: rgba(102, 192, 93, 0.15);
+  color: #69BF62;
 
   &:hover {
-    background: rgba(36, 187, 246, 0.25);
+    background: rgba(102, 192, 93, 0.25);
   }
   &:after {
     content: " ";
@@ -188,7 +188,7 @@ export default {
     width: 38px;
     height: 100%;
     position: absolute;
-    background: url(../../../assets/ic_cancel.svg) 50% 50% no-repeat;
+    background: url(../../../assets/ic_cancel-green.svg) 50% 50% no-repeat;
     background-size: 10px 10px;
   }
 
@@ -206,7 +206,7 @@ export default {
 }
 
 .product-list__item-label.checked {
-  border: 4px solid #24bbf6;
+  border: 4px solid #69BF62;
 }
 // .product-list__item-label.checked .product-list__item-button {
 //   background: rgba(36, 187, 246, 0.15);

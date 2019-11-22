@@ -38,6 +38,7 @@ export default {
   methods: {
     setPath() {
       this.$store.commit("setPath", "flat");
+      this.$store.commit("setFilter", { categories: 3 });
       this.$store.commit("nextStep");
     }
   }
@@ -45,13 +46,13 @@ export default {
 </script>
 
 <style lang="scss">
-.step__header {
-  display: none;
-}
 .content {
   display: grid;
   align-items: center;
-
+  margin-top: -60px;
+  @media (max-width: 991px) {
+    margin-top: -40px;
+  }
   &__desc {
     align-self: center;
   }

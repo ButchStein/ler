@@ -7,8 +7,8 @@
         <footer class="komplect__footer">
             <div class="komplect__price price">{{ price }}</div>
             <div class="komplect__stars">
-                <img src="../../assets/star.svg" v-for="(star, index) in stars" :key="index"/>
-                <img src="../../assets/halfstar.svg" v-if="half"/>
+                <img src="../../assets/star-green.svg" v-for="(star, index) in stars" :key="index"/>
+                <img src="../../assets/halfstar-green.svg" v-if="half"/>
             </div>
         </footer>
     </label>
