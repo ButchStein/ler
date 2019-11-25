@@ -86,7 +86,7 @@ export default {
     }
 
     &__button.active {
-        background: rgba(36, 187, 246, 0.15);
+        background: rgba(105, 191, 98, 0.15);
     }
 
     &__buttons {
