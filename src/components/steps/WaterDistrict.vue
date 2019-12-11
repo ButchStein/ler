@@ -17,13 +17,13 @@
                 alt="Карта района"
                 @click="showModal = true"
               />
-              <transition name="fade">
-                <modal v-model="showModal" @close="showModal = false">
-                  <water-result />
-                </modal>
-              </transition>
             </div>
           </div>
+          <transition name="fade">
+            <modal v-model="showModal" @close="showModal = false">
+              <water-result />
+            </modal>
+          </transition>
         </div>
       </template>
     </step>
@@ -53,6 +53,12 @@ export default {
   display: grid;
   align-items: center;
   margin-top: -60px;
+  &>.modal__overlay{
+    background: transparent;
+    &>.modal{
+      margin: 181px auto;
+    }
+  }
   @media (max-width: 991px) {
     margin-top: -40px;
   }
@@ -113,10 +119,12 @@ export default {
   &__map {
     overflow: hidden;
     min-height: 100%;
+    cursor:pointer;
     &__img {
       max-width: 100%;
       height: auto;
     }
   }
+  
 }
 </style>
