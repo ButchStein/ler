@@ -11,15 +11,18 @@
               >С помощью двух простых вопросов поможем определить тип воды и посоветуем фильтры.</div>
             </div>
             <div class="content__map col-lg-8 col-sm-12">
-              <img class="content__map__img" src="../../assets/district_map.jpg" alt="Карта района" />
+              <img
+                class="content__map__img"
+                src="../../assets/district_map.jpg"
+                alt="Карта района"
+                @click="showModal = true"
+              />
+              <transition name="fade">
+                <modal v-model="showModal" @close="showModal = false">
+                  <water-result />
+                </modal>
+              </transition>
             </div>
-
-            <action-button
-              class="content__button"
-              title="Подобрать решение"
-              primary="true"
-              @click="setPath('flat')"
-            />
           </div>
         </div>
       </template>
@@ -29,18 +32,18 @@
 
 <script>
 import Step from "../template/Step";
-import ActionButton from "../template/ActionButton";
+import Modal from "../template/Modal";
+import WaterResult from "../template/WaterResult";
 export default {
   components: {
     Step,
-    ActionButton
+    Modal,
+    WaterResult
   },
-  methods: {
-    setPath() {
-      this.$store.commit("setPath", "flat");
-      this.$store.commit("setFilter", { categories: 3 });
-      this.$store.commit("nextStep");
-    }
+  data() {
+    return {
+      showModal: false
+    };
   }
 };
 </script>

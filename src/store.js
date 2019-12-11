@@ -20,7 +20,7 @@ export default new Vuex.Store({
     step: 0,
     paths: {
       initial: ["WaterDistrict"],
-      flat: ["WaterDistrict", "WaterChoose", "Analyses", "Finish", "Thankyou"],
+      flat: ["WaterDistrict", "Finish", "Thankyou"],
       house: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       dacha: ["HouseChoose", "SmellChoose", "PeopleChoose", "WaterChoose", "Analyses", "Finish", "OrderForm"],
       feedback: ["Feedback"],
@@ -34,17 +34,17 @@ export default new Vuex.Store({
       is_home_count_p: null,
       hardness: false,
       fe: false,
-      has_analyses: false,
+      has_analyses: true,
       analyses: {
-        hardness: '',
-        fe: '',
-        nitrati: '',
+        hardness: 5.7,
+        fe: 0.2,
+        nitrati: 8.2,
         nitrite: '',
-        tds: '',
-        oxidizability: '',
-        ph: '',
-        turbidity: '',
-        coloration: ''
+        tds: 400,
+        oxidizability: 2.1,
+        ph: 7.8,
+        turbidity: 1.24,
+        coloration: 8
       }
     },
     filteredProducts: [],
